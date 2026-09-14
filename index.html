@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reglamento de uso de IA — Universidad de Boyacá</title>
+<meta name="description" content="Resumen navegable por rol de los Acuerdos 1904 de 2025 y 1944 de 2026 de la Universidad de Boyacá, con citas textuales y recortes del documento oficial.">
+<meta name="theme-color" content="#E00810">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --rojo:#E00810; --rojo2:#E8543C; --rojo-osc:#A8050B;
+ --tinta:#1A1A1A; --gris:#5A5A5A; --gris2:#8A8A8A;
+ --linea:#E2E2E2; --papel:#FFFFFF; --hueso:#F7F6F4;
+ --verde:#1F7A4C;
+ --t:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--t);
+ font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--rojo);z-index:100}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--rojo);color:#fff;
+ padding:14px 22px;font-weight:700}
+.skip:focus{left:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+ clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--rojo);outline-offset:3px;border-radius:4px}
+
+header.top{border-bottom:1px solid var(--linea);background:#fff;position:sticky;top:0;z-index:60}
+.marca{display:flex;align-items:center;gap:26px;padding:16px 0;flex-wrap:wrap}
+.marca img{height:38px;width:auto}
+.marca .sep{width:1px;height:34px;background:var(--linea)}
+
+.hero{background:var(--rojo);color:#fff;padding:64px 0 56px}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.1;margin:0 0 18px;font-weight:800;letter-spacing:-.02em}
+.hero p{font-size:19px;max-width:660px;margin:0 0 10px;opacity:.96}
+.hero .eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:14px}
+
+nav.tabs{background:#fff;border-bottom:1px solid var(--linea);position:sticky;top:71px;z-index:50}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.tabs .wrap::-webkit-scrollbar{display:none}
+nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:16px 18px;
+ font-family:var(--t);font-size:15px;font-weight:600;color:var(--gris);cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--rojo);border-bottom-color:var(--rojo)}
+
+section.pane{display:none;padding:48px 0 70px}
+section.pane.on{display:block}
+h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 10px;font-weight:800;letter-spacing:-.015em}
+h2 .n{color:var(--rojo)}
+.lead{color:var(--gris);max-width:720px;margin:0 0 30px}
+h3.blk{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--rojo);
+ margin:44px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--rojo)}
+
+.filtros{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}
+.f{border:2px solid var(--tinta);background:none;border-radius:40px;padding:8px 17px;
+ font-family:var(--t);font-size:14px;font-weight:600;cursor:pointer}
+.f.on{background:var(--tinta);color:#fff}
+.buscador{position:relative;margin-bottom:12px;display:flex;align-items:center;gap:10px;
+ border:2px solid var(--linea);border-radius:12px;padding:11px 15px;background:#fff}
+.buscador svg{color:var(--gris2);flex:none}
+.buscador input{border:0;outline:0;font-family:var(--t);font-size:16px;width:100%;background:none}
+.conteo{font-size:14px;color:var(--gris);margin:0 0 20px;min-height:21px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;align-items:start}
+.card{background:#fff;border:1px solid var(--linea);border-top:4px solid var(--c,var(--rojo));
+ border-radius:12px;padding:22px;cursor:pointer;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:0 6px 22px rgba(0,0,0,.09);transform:translateY(-2px)}
+.card.abierta{grid-column:1/-1;cursor:default}
+.card h3{font-size:19px;margin:0 0 4px;font-weight:700;line-height:1.3}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.09em;padding:4px 10px;
+ border-radius:30px;margin-bottom:11px}
+.pill.permitido{background:#E6F3EC;color:#166B41}
+.pill.condicionado{background:#FDECE7;color:#A8410E}
+.pill.prohibido{background:#FDEAEA;color:var(--rojo-osc)}
+.pill.lit{background:#F0F0F0;color:var(--gris)}
+.det{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.3,1)}
+.card.abierta .det{max-height:none;margin-top:14px}
+button.mas{font-size:13px;color:var(--c,var(--rojo));margin-top:14px;display:flex;align-items:center;
+ gap:7px;font-weight:700;background:none;border:0;padding:5px 0;cursor:pointer;font-family:var(--t);
+ text-align:left;width:100%}
+button.mas span{transition:transform .22s;display:inline-block;font-size:16px}
+.card.abierta button.mas span{transform:rotate(45deg)}
+
+.cita{border-left:4px solid var(--rojo);background:var(--hueso);padding:16px 18px;border-radius:0 8px 8px 0}
+.cita::before{content:"CITA TEXTUAL";display:block;font-size:10.5px;letter-spacing:.13em;
+ color:var(--rojo);font-weight:700;margin-bottom:8px}
+.ctxt{font-style:italic;margin:0 0 14px;font-size:15.5px;line-height:1.6}
+.shot{margin:0;border:1px solid var(--linea);border-radius:8px;overflow:hidden;background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{font-size:12px;color:var(--gris);padding:8px 12px;border-top:1px solid var(--linea);
+ background:#fff}
+.sig{margin-top:14px;font-size:15px;color:var(--gris)}
+.sig::before{content:"QUÉ SIGNIFICA — ";font-weight:700;color:var(--tinta);font-size:11px;letter-spacing:.09em}
+
+table.porc{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 10px}
+table.porc th{background:var(--rojo);color:#fff;text-align:left;padding:11px 12px;font-size:13px;
+ letter-spacing:.04em}
+table.porc td{border-bottom:1px solid var(--linea);padding:11px 12px;vertical-align:top}
+table.porc .num{white-space:nowrap;font-weight:700}
+table.porc .alerta{color:#A8410E}
+table.porc .prohib{color:var(--rojo-osc)}
+table.porc .obs{color:var(--gris);font-size:13.5px}
+.tabla-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.mom{background:var(--hueso);border-radius:12px;padding:20px 24px;margin-bottom:14px}
+.mom h4{margin:0 0 8px;font-size:16px;color:var(--rojo)}
+.mom ol{margin:0;padding-left:20px}
+.mom li{margin-bottom:6px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.caja{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:22px}
+.caja h4{margin:0 0 10px;font-size:17px}
+.declara{background:var(--hueso);border-left:4px solid var(--rojo);padding:18px;border-radius:0 8px 8px 0;
+ font-style:italic;font-size:15px}
+ol.secc{padding-left:22px} ol.secc li{margin-bottom:5px}
+.pdfs{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:10px}
+.pdfcard{border:1px solid var(--linea);border-radius:12px;padding:24px;background:#fff}
+.pdfcard a{display:inline-block;margin-top:12px;background:var(--rojo);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px}
+.aviso{background:#FFF8E1;border:1px solid #F0D68A;border-radius:10px;padding:14px 18px;font-size:14.5px;
+ margin:16px 0}
+footer{background:var(--tinta);color:#fff;padding:40px 0;margin-top:20px;font-size:14px}
+footer a{color:#fff}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){
+ body{font-size:16px} .wrap{padding:0 18px}
+ nav.tabs{top:69px} .grid{grid-template-columns:1fr}
+ .buscador input{font-size:16px}
+}
+@media print{nav.tabs,.filtros,.buscador,.conteo,#prog,.skip{display:none!important}
+ section.pane{display:block!important} .det{max-height:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div id="prog" role="presentation"></div>
+
+<header class="top"><div class="wrap marca">
+ <img src="img/logo-ub.png" alt="Universidad de Boyacá">
+ <span class="sep"></span>
+ <img src="img/logo-ief.png" alt="Instituto de Estudios del Futuro">
+</div></header>
+
+<div class="hero"><div class="wrap">
+ <p class="eyebrow">Acuerdos 1904 de 2025 y 1944 de 2026 · Consejo Directivo</p>
+ <h1>La Universidad ya tiene reglas de IA.<br>Y ya le aplican.</h1>
+ <p>Cincuenta y dos páginas de reglamento, resumidas por rol. Cada afirmación va con la cita textual
+ y con el recorte exacto del acuerdo, para que usted pueda verificarla.</p>
+</div></div>
+
+<nav class="tabs" role="tablist" aria-label="Seleccione su rol"><div class="wrap"><button role="tab" id="tab-general" aria-controls="pane-general" aria-selected="true" data-tab="general">Generalidades</button><button role="tab" id="tab-estudiante" aria-controls="pane-estudiante" aria-selected="false" data-tab="estudiante">Estudiante</button><button role="tab" id="tab-docente" aria-controls="pane-docente" aria-selected="false" data-tab="docente">Docente</button><button role="tab" id="tab-investigador" aria-controls="pane-investigador" aria-selected="false" data-tab="investigador">Investigador</button><button role="tab" id="tab-funcionario" aria-controls="pane-funcionario" aria-selected="false" data-tab="funcionario">Funcionario</button><button role="tab" id="tab-formato" aria-controls="pane-formato" aria-selected="false" data-tab="formato">FOR-IA-001</button><button role="tab" id="tab-pdf" aria-controls="pane-pdf" aria-selected="false" data-tab="pdf">Ver los PDF</button></div></nav>
+<main id="contenido"><section class="pane on" id="pane-general" role="tabpanel" aria-labelledby="tab-general"><div class="wrap">
+<h2>Lo que aplica a <span class="n">todos</span></h2>
+<p class="lead">Dos acuerdos regulan el uso de IA en la Universidad. El 1904 fija las reglas; el 1944
+crea el formato con el que se declara su uso y los porcentajes máximos permitidos.</p>
+
+<div class="cols">
+ <div class="caja"><h4>Acuerdo 1904 de 2025</h4>
+  <p>Reglamento Institucional para el Uso de la Inteligencia Artificial. Define principios, deberes,
+  derechos y régimen disciplinario para toda la comunidad universitaria. 38 páginas.</p></div>
+ <div class="caja"><h4>Acuerdo 1944 de 2026</h4>
+  <p>Adopta el formato FOR-IA-001, fija los momentos en que se presenta y establece los límites
+  porcentuales de uso de IA por tipo de trabajo académico. 14 páginas.</p></div>
+</div>
+
+<h3 class="blk">Los ocho principios</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="centralidad humana la tecnología de ia es una herramienta al servicio de las personas. la interacción humana, el pensamiento crítico, la creatividad original y el juicio ético deben prevalecer siempre sobre las decisiones automatizadas. la ia potencia, no reemplaza, la capacidad humana. la máquina no decide por usted. usted decide, con la máquina al lado.">
+<h3>Centralidad Humana</h3>
+<div class="det" id="det38"><div class="cita"><p class="ctxt">La tecnología de IA es una herramienta al servicio de las personas. La interacción humana, el pensamiento crítico, la creatividad original y el juicio ético deben prevalecer siempre sobre las decisiones automatizadas. La IA potencia, no reemplaza, la capacidad humana.</p><figure class="shot"><img loading="lazy" src="citas/cita-38-p03.jpg" alt="Recorte del Acuerdo, página 3"><figcaption>Acuerdo 1904 de 2025 · p. 3</figcaption></figure></div><div class="sig">La máquina no decide por usted. Usted decide, con la máquina al lado.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det38"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="responsabilidad y rendición de cuentas cada usuario es el único responsable del contenido que genera, valida o difunde utilizando herramientas de ia. la responsabilidad final sobre la veracidad, la calidad y las consecuencias del trabajo o de las decisiones no es delegable ni a la máquina ni a la universidad. «no es delegable». ni a la ia ni a la universidad. si lo firma, responde usted.">
+<h3>Responsabilidad y Rendición de Cuentas</h3>
+<div class="det" id="det39"><div class="cita"><p class="ctxt">Cada usuario es el único responsable del contenido que genera, valida o difunde utilizando herramientas de IA. La responsabilidad final sobre la veracidad, la calidad y las consecuencias del trabajo o de las decisiones no es delegable ni a la máquina ni a la universidad.</p><figure class="shot"><img loading="lazy" src="citas/cita-39-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">«No es delegable». Ni a la IA ni a la Universidad. Si lo firma, responde usted.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det39"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="integridad académica y científica la honestidad, la transparencia y la originalidad son los pilares de la vida académica. la ia debe usarse para enriquecer el aprendizaje y la investigación, no para cometer plagio, falsificar datos o incurrir en cualquier forma de deshonestidad. usarla para aprender más: sí. usarla para no aprender: fraude.">
+<h3>Integridad Académica y Científica</h3>
+<div class="det" id="det40"><div class="cita"><p class="ctxt">La honestidad, la transparencia y la originalidad son los pilares de la vida académica. La IA debe usarse para enriquecer el aprendizaje y la investigación, no para cometer plagio, falsificar datos o incurrir en cualquier forma de deshonestidad.</p><figure class="shot"><img loading="lazy" src="citas/cita-40-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">Usarla para aprender más: sí. Usarla para no aprender: fraude.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det40"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="evaluación crítica todo resultado producido por una ia debe ser tratado con escepticismo. es un deber verificar la información, identificar posibles sesgos, errores o «alucinaciones», y contrastar los resultados con fuentes fiables antes de su uso o difusión. verificar no es una recomendación. dice «es un deber».">
+<h3>Evaluación Crítica</h3>
+<div class="det" id="det41"><div class="cita"><p class="ctxt">Todo resultado producido por una IA debe ser tratado con escepticismo. Es un deber verificar la información, identificar posibles sesgos, errores o «alucinaciones», y contrastar los resultados con fuentes fiables antes de su uso o difusión.</p><figure class="shot"><img loading="lazy" src="citas/cita-41-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">Verificar no es una recomendación. Dice «es un deber».</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det41"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="privacidad y confidencialidad se debe proteger rigurosamente la información personal y los datos sensibles propios y de terceros. está prohibido introducir datos confidenciales en plataformas de ia que no garanticen su protección, en cumplimiento con la legislación vigente y las normas institucionales al respecto. aquí está la historia clínica del caso 1. dice «está prohibido».">
+<h3>Privacidad y Confidencialidad</h3>
+<div class="det" id="det42"><div class="cita"><p class="ctxt">Se debe proteger rigurosamente la información personal y los datos sensibles propios y de terceros. Está prohibido introducir datos confidenciales en plataformas de IA que no garanticen su protección, en cumplimiento con la legislación vigente y las normas institucionales al respecto.</p><figure class="shot"><img loading="lazy" src="citas/cita-42-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">Aquí está la historia clínica del caso 1. Dice «está prohibido».</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det42"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="equidad e inclusión la adopción de la ia debe buscar reducir las brechas existentes, no crear nuevas. se debe garantizar un acceso equitativo a las herramientas y oportunidades, y vigilar activamente que los algoritmos no perpetúen ni amplifiquen sesgos discriminatorios. por esto el curso no exige ninguna licencia de pago.">
+<h3>Equidad e Inclusión</h3>
+<div class="det" id="det43"><div class="cita"><p class="ctxt">La adopción de la IA debe buscar reducir las brechas existentes, no crear nuevas. Se debe garantizar un acceso equitativo a las herramientas y oportunidades, y vigilar activamente que los algoritmos no perpetúen ni amplifiquen sesgos discriminatorios.</p><figure class="shot"><img loading="lazy" src="citas/cita-43-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">Por esto el curso no exige ninguna licencia de pago.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det43"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="transparencia los usuarios deben ser transparentes sobre su uso de la ia. la universidad, a su vez, será transparente sobre los sistemas de ia que implemente en sus procesos administrativos y académicos, informando a la comunidad sobre su uso y funcionamiento general. va en las dos direcciones: usted declara, y la universidad también.">
+<h3>Transparencia</h3>
+<div class="det" id="det44"><div class="cita"><p class="ctxt">Los usuarios deben ser transparentes sobre su uso de la IA. La Universidad, a su vez, será transparente sobre los sistemas de IA que implemente en sus procesos administrativos y académicos, informando a la comunidad sobre su uso y funcionamiento general.</p><figure class="shot"><img loading="lazy" src="citas/cita-44-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">Va en las dos direcciones: usted declara, y la Universidad también.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det44"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="responsabilidad social universitaria y sostenibilidad compromiso con el bien común, reducción de brechas, diseño centrado en las comunidades y minimización del impacto ambiental (green ai). el costo ambiental entra al reglamento. es el criterio de sostenibilidad que vimos en clase.">
+<h3>Responsabilidad Social Universitaria y Sostenibilidad</h3>
+<div class="det" id="det45"><div class="cita"><p class="ctxt">Compromiso con el bien común, reducción de brechas, diseño centrado en las comunidades y minimización del impacto ambiental (Green AI).</p><figure class="shot"><img loading="lazy" src="citas/cita-45-p04.jpg" alt="Recorte del Acuerdo, página 4"><figcaption>Acuerdo 1904 de 2025 · p. 4</figcaption></figure></div><div class="sig">El costo ambiental entra al reglamento. Es el criterio de sostenibilidad que vimos en clase.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det45"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Las faltas</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="1. fraude académico y plagio la presentación de trabajos, ensayos, códigos de programación, exámenes o cualquier producto académico generado por una ia como si fuera de autoría propia, constituye una falta contra la integridad académica. dicha conducta será tratada como plagio o fraude, según lo estipulado en los reglamentos estudiantiles […] y acarreará las sanciones disciplinarias correspondientes. no es una categoría nueva y más suave. entra por la puerta del plagio, con las sanciones del plagio.">
+<h3>1. Fraude académico y plagio</h3>
+<div class="det" id="det46"><div class="cita"><p class="ctxt">La presentación de trabajos, ensayos, códigos de programación, exámenes o cualquier producto académico generado por una IA como si fuera de autoría propia, constituye una falta contra la integridad académica. Dicha conducta será tratada como plagio o fraude, según lo estipulado en los Reglamentos Estudiantiles […] y acarreará las sanciones disciplinarias correspondientes.</p><figure class="shot"><img loading="lazy" src="citas/cita-46-p37.jpg" alt="Recorte del Acuerdo, página 37"><figcaption>Acuerdo 1904 de 2025 · p. 37</figcaption></figure></div><div class="sig">No es una categoría nueva y más suave. Entra por la puerta del plagio, con las sanciones del plagio.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det46"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="2. conducta científica inapropiada la utilización de ia para fabricar, falsificar o manipular datos en un proyecto de investigación, así como el no declarar su uso en la metodología o en el desarrollo de este, constituye una violación a la ética investigativa ojo a la segunda parte: no declararlo es falta, aunque los datos estén bien.">
+<h3>2. Conducta científica inapropiada</h3>
+<div class="det" id="det47"><div class="cita"><p class="ctxt">La utilización de IA para fabricar, falsificar o manipular datos en un proyecto de investigación, así como el no declarar su uso en la metodología o en el desarrollo de este, constituye una violación a la ética investigativa</p><figure class="shot"><img loading="lazy" src="citas/cita-47-p37.jpg" alt="Recorte del Acuerdo, página 37"><figcaption>Acuerdo 1904 de 2025 · p. 37</figcaption></figure></div><div class="sig">Ojo a la segunda parte: no declararlo es falta, aunque los datos estén bien.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det47"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="3. actos contra la convivencia la creación de contenido mediante ia (ej. deepfakes, textos difamatorios) para acosar, suplantar la identidad, intimidar o dañar la honra de cualquier miembro de la comunidad universitaria, será considerada una falta cubre a estudiantes, profesores y administrativos por igual.">
+<h3>3. Actos contra la convivencia</h3>
+<div class="det" id="det48"><div class="cita"><p class="ctxt">La creación de contenido mediante IA (ej. deepfakes, textos difamatorios) para acosar, suplantar la identidad, intimidar o dañar la honra de cualquier miembro de la comunidad universitaria, será considerada una falta</p><figure class="shot"><img loading="lazy" src="citas/cita-48-p37.jpg" alt="Recorte del Acuerdo, página 37"><figcaption>Acuerdo 1904 de 2025 · p. 37</figcaption></figure></div><div class="sig">Cubre a estudiantes, profesores y administrativos por igual.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det48"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="4. violación de confidencialidad el uso de herramientas de ia para tratar datos personales de estudiantes, docentes o administrativos sin el debido consentimiento o en contravención de la política de tratamiento de datos personales, constituye una falta y compromete la responsabilidad del individuo implicado. «compromete la responsabilidad del individuo implicado». no la de la universidad: la suya.">
+<h3>4. Violación de confidencialidad</h3>
+<div class="det" id="det49"><div class="cita"><p class="ctxt">El uso de herramientas de IA para tratar datos personales de estudiantes, docentes o administrativos sin el debido consentimiento o en contravención de la Política de Tratamiento de Datos Personales, constituye una falta y compromete la responsabilidad del individuo implicado.</p><figure class="shot"><img loading="lazy" src="citas/cita-49-p38.jpg" alt="Recorte del Acuerdo, página 38"><figcaption>Acuerdo 1904 de 2025 · p. 38</figcaption></figure></div><div class="sig">«Compromete la responsabilidad del individuo implicado». No la de la Universidad: la suya.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det49"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Por qué le aplica sin firmar nada</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="por qué le aplica sin haber firmado nada el presente reglamento de ia hace parte integral de los contratos de trabajo de funcionarios y del acuerdo de matrícula de los estudiantes de pregrado y postgrado, de los estudiantes de cursos y diplomados e incluye a los graduandos de la universidad de boyacá. cuando usted se matriculó, aceptó esto. no hay que firmar nada aparte. y el artículo 28 dice que rige «a partir de su aprobación»: desde el 28 de noviembre de 2025.">
+<h3>Por qué le aplica sin haber firmado nada</h3>
+<div class="det" id="det1"><div class="cita"><p class="ctxt">El presente Reglamento de IA hace parte integral de los contratos de trabajo de funcionarios y del acuerdo de matrícula de los estudiantes de pregrado y postgrado, de los estudiantes de cursos y diplomados e incluye a los graduandos de la Universidad de Boyacá.</p><figure class="shot"><img loading="lazy" src="citas/cita-01-p38.jpg" alt="Recorte del Acuerdo, página 38"><figcaption>Acuerdo 1904 de 2025 · p. 38</figcaption></figure></div><div class="sig">Cuando usted se matriculó, aceptó esto. No hay que firmar nada aparte. Y el artículo 28 dice que rige «a partir de su aprobación»: desde el 28 de noviembre de 2025.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det1"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+</div></section><section class="pane" id="pane-estudiante" role="tabpanel" aria-labelledby="tab-estudiante"><div class="wrap">
+<h2>Si usted es <span class="n">estudiante</span></h2>
+<p class="lead">Catorce usos concretos sacados del reglamento, sus nueve deberes, sus nueve derechos,
+y el formato que debe entregar para que le validen el trabajo de grado.</p>
+
+<h3 class="blk">¿Puedo o no puedo?</h3>
+<div class="filtros" role="group" aria-label="Filtrar usos">
+ <button class="f on" type="button" data-f="todos" aria-pressed="true">Todos</button>
+ <button class="f" type="button" data-f="permitido" aria-pressed="false">Puedo</button>
+ <button class="f" type="button" data-f="condicionado" aria-pressed="false">Puedo, con condición</button>
+ <button class="f" type="button" data-f="prohibido" aria-pressed="false">No puedo</button>
+</div>
+<div class="buscador">
+ <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-4-4"/></svg>
+ <label class="sr-only" for="qUsos">Buscar en las citas</label>
+ <input id="qUsos" type="search" autocomplete="off" placeholder="Buscar: datos, código, imágenes…">
+</div>
+<p class="conteo" id="cUsos" role="status" aria-live="polite"></p>
+<div class="grid" id="gUsos" data-f="todos"><article class="card" style="--c:var(--verde)" data-txt="desglose de conceptos complejos utilizar la ia como un tutor para desglosar teorías, modelos o conceptos abstractos. " data-cat="permitido">
+<span class="pill permitido">PERMITIDO</span><h3>Desglose de conceptos complejos</h3>
+<div class="det" id="det2"><div class="cita"><p class="ctxt">Utilizar la IA como un tutor para desglosar teorías, modelos o conceptos abstractos.</p><figure class="shot"><img loading="lazy" src="citas/cita-02-p15.jpg" alt="Recorte del Acuerdo, página 15"><figcaption>Acuerdo 1904 de 2025 · p. 15</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det2"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="lluvia de ideas interactuar con la ia como un interlocutor para debatir ideas. se le puede pedir que actúe como un crítico, que proponga contraargumentos a una tesis " data-cat="permitido">
+<span class="pill permitido">PERMITIDO</span><h3>Lluvia de ideas</h3>
+<div class="det" id="det3"><div class="cita"><p class="ctxt">Interactuar con la IA como un interlocutor para debatir ideas. Se le puede pedir que actúe como un crítico, que proponga contraargumentos a una tesis</p><figure class="shot"><img loading="lazy" src="citas/cita-03-p15.jpg" alt="Recorte del Acuerdo, página 15"><figcaption>Acuerdo 1904 de 2025 · p. 15</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det3"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="mapas conceptuales pedir a la ia que organice un tema central en un mapa conceptual o un esquema jerárquico. " data-cat="permitido">
+<span class="pill permitido">PERMITIDO</span><h3>Mapas conceptuales</h3>
+<div class="det" id="det4"><div class="cita"><p class="ctxt">Pedir a la IA que organice un tema central en un mapa conceptual o un esquema jerárquico.</p><figure class="shot"><img loading="lazy" src="citas/cita-04-p15.jpg" alt="Recorte del Acuerdo, página 15"><figcaption>Acuerdo 1904 de 2025 · p. 15</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det4"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="cronogramas de estudio emplear la ia para diseñar un plan actividades de estudio detallado para un período académico, un examen final o un proyecto de gran envergadura. " data-cat="permitido">
+<span class="pill permitido">PERMITIDO</span><h3>Cronogramas de estudio</h3>
+<div class="det" id="det5"><div class="cita"><p class="ctxt">Emplear la IA para diseñar un plan actividades de estudio detallado para un período académico, un examen final o un proyecto de gran envergadura.</p><figure class="shot"><img loading="lazy" src="citas/cita-05-p15.jpg" alt="Recorte del Acuerdo, página 15"><figcaption>Acuerdo 1904 de 2025 · p. 15</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det5"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo2)" data-txt="búsqueda bibliográfica preliminar es una responsabilidad ineludible del estudiante buscar, leer y validar estas fuentes en las bases de datos académicas de la universidad. " data-cat="condicionado">
+<span class="pill condicionado">CONDICIONADO</span><h3>Búsqueda bibliográfica preliminar</h3>
+<div class="det" id="det6"><div class="cita"><p class="ctxt">es una responsabilidad ineludible del estudiante buscar, leer y validar estas fuentes en las bases de datos académicas de la universidad.</p><figure class="shot"><img loading="lazy" src="citas/cita-06-p16.jpg" alt="Recorte del Acuerdo, página 16"><figcaption>Acuerdo 1904 de 2025 · p. 16</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det6"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo2)" data-txt="mejorar el estilo de un borrador propio una vez que el estudiante ha redactado un borrador con sus propias ideas y palabras, puede usar la ia como un editor avanzado. " data-cat="condicionado">
+<span class="pill condicionado">CONDICIONADO</span><h3>Mejorar el estilo de un borrador propio</h3>
+<div class="det" id="det7"><div class="cita"><p class="ctxt">Una vez que el estudiante ha redactado un borrador con sus propias ideas y palabras, puede usar la IA como un editor avanzado.</p><figure class="shot"><img loading="lazy" src="citas/cita-07-p16.jpg" alt="Recorte del Acuerdo, página 16"><figcaption>Acuerdo 1904 de 2025 · p. 16</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det7"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo2)" data-txt="generar código o fórmulas es responsabilidad absoluta del estudiante comprender cada línea del código o cada paso de la fórmula, ser capaz de explicar su lógica, adaptarla a su proyecto y documentarla adecuadamente. " data-cat="condicionado">
+<span class="pill condicionado">CONDICIONADO</span><h3>Generar código o fórmulas</h3>
+<div class="det" id="det8"><div class="cita"><p class="ctxt">Es responsabilidad absoluta del estudiante comprender cada línea del código o cada paso de la fórmula, ser capaz de explicar su lógica, adaptarla a su proyecto y documentarla adecuadamente.</p><figure class="shot"><img loading="lazy" src="citas/cita-08-p16.jpg" alt="Recorte del Acuerdo, página 16"><figcaption>Acuerdo 1904 de 2025 · p. 16</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det8"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo2)" data-txt="crear imágenes para trabajos el estudiante debe asegurarse de que estas imágenes sean conceptualmente precisas y debe citar la herramienta utilizada " data-cat="condicionado">
+<span class="pill condicionado">CONDICIONADO</span><h3>Crear imágenes para trabajos</h3>
+<div class="det" id="det9"><div class="cita"><p class="ctxt">El estudiante debe asegurarse de que estas imágenes sean conceptualmente precisas y debe citar la herramienta utilizada</p><figure class="shot"><img loading="lazy" src="citas/cita-09-p16.jpg" alt="Recorte del Acuerdo, página 16"><figcaption>Acuerdo 1904 de 2025 · p. 16</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det9"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="simulacro de sustentación prepararse para una sustentación pidiéndole a la ia que asuma el rol de un jurado evaluador. " data-cat="permitido">
+<span class="pill permitido">PERMITIDO</span><h3>Simulacro de sustentación</h3>
+<div class="det" id="det10"><div class="cita"><p class="ctxt">Prepararse para una sustentación pidiéndole a la IA que asuma el rol de un jurado evaluador.</p><figure class="shot"><img loading="lazy" src="citas/cita-10-p17.jpg" alt="Recorte del Acuerdo, página 17"><figcaption>Acuerdo 1904 de 2025 · p. 17</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det10"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="practicar idiomas utilizar la ia para mantener conversaciones escritas o de voz en otro idioma. " data-cat="permitido">
+<span class="pill permitido">PERMITIDO</span><h3>Practicar idiomas</h3>
+<div class="det" id="det11"><div class="cita"><p class="ctxt">Utilizar la IA para mantener conversaciones escritas o de voz en otro idioma.</p><figure class="shot"><img loading="lazy" src="citas/cita-11-p17.jpg" alt="Recorte del Acuerdo, página 17"><figcaption>Acuerdo 1904 de 2025 · p. 17</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det11"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="generar el trabajo y entregarlo como propio queda estrictamente prohibido el uso de herramientas de ia para generar textos, código, soluciones a problemas o cualquier otro contenido y presentarlo como una creación propia. " data-cat="prohibido">
+<span class="pill prohibido">PROHIBIDO</span><h3>Generar el trabajo y entregarlo como propio</h3>
+<div class="det" id="det12"><div class="cita"><p class="ctxt">Queda estrictamente prohibido el uso de herramientas de IA para generar textos, código, soluciones a problemas o cualquier otro contenido y presentarlo como una creación propia.</p><figure class="shot"><img loading="lazy" src="citas/cita-12-p25.jpg" alt="Recorte del Acuerdo, página 25"><figcaption>Acuerdo 1904 de 2025 · p. 25</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det12"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="pegar datos personales o de salud la prohibición de introducir información personal sensible, como números de identificación, datos de salud, información financiera " data-cat="prohibido">
+<span class="pill prohibido">PROHIBIDO</span><h3>Pegar datos personales o de salud</h3>
+<div class="det" id="det13"><div class="cita"><p class="ctxt">la prohibición de introducir información personal sensible, como números de identificación, datos de salud, información financiera</p><figure class="shot"><img loading="lazy" src="citas/cita-13-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det13"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="deepfakes de compañeros o docentes queda terminantemente prohibido el uso de ia para […] suplantar la identidad de compañeros o docentes (deepfakes) " data-cat="prohibido">
+<span class="pill prohibido">PROHIBIDO</span><h3>Deepfakes de compañeros o docentes</h3>
+<div class="det" id="det14"><div class="cita"><p class="ctxt">Queda terminantemente prohibido el uso de IA para […] suplantar la identidad de compañeros o docentes (deepfakes)</p><figure class="shot"><img loading="lazy" src="citas/cita-14-p27.jpg" alt="Recorte del Acuerdo, página 27"><figcaption>Acuerdo 1904 de 2025 · p. 27</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det14"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="usar ia sin declararlo el estudiante está obligado a declarar de manera explícita y detallada el uso de cualquier herramienta de ia en la elaboración de sus trabajos. " data-cat="prohibido">
+<span class="pill prohibido">PROHIBIDO</span><h3>Usar IA sin declararlo</h3>
+<div class="det" id="det15"><div class="cita"><p class="ctxt">el estudiante está obligado a declarar de manera explícita y detallada el uso de cualquier herramienta de IA en la elaboración de sus trabajos.</p><figure class="shot"><img loading="lazy" src="citas/cita-15-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det15"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Sus nueve deberes</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="integridad académica y originalidad queda estrictamente prohibido el uso de herramientas de ia para generar textos, código, soluciones a problemas o cualquier otro contenido y presentarlo como una creación propia. esta práctica se considera una forma de deshonestidad académica, constituye plagio, y será sancionada según el reglamento estudiantil vigente. el uso apropiado se circunscribe a la asistencia en fases preliminares como la ideación de temas, la esquematización de argumentos o la optimización estilística y gramatical de un contenido ya creado y comprendido por el estudiante. generar y presentar como propio = plagio. con esas palabras." data-dd="deberes">
+<h3>Integridad académica y originalidad</h3>
+<div class="det" id="det16"><div class="cita"><p class="ctxt">Queda estrictamente prohibido el uso de herramientas de IA para generar textos, código, soluciones a problemas o cualquier otro contenido y presentarlo como una creación propia. Esta práctica se considera una forma de deshonestidad académica, constituye plagio, y será sancionada según el Reglamento estudiantil vigente.</p><figure class="shot"><img loading="lazy" src="citas/cita-16-p25.jpg" alt="Recorte del Acuerdo, página 25"><figcaption>Acuerdo 1904 de 2025 · p. 25</figcaption></figure></div><div class="cita"><p class="ctxt">El uso apropiado se circunscribe a la asistencia en fases preliminares como la ideación de temas, la esquematización de argumentos o la optimización estilística y gramatical de un contenido ya creado y comprendido por el estudiante.</p><figure class="shot"><img loading="lazy" src="citas/cita-17-p25.jpg" alt="Recorte del Acuerdo, página 25"><figcaption>Acuerdo 1904 de 2025 · p. 25</figcaption></figure></div><div class="sig">Generar y presentar como propio = plagio. Con esas palabras.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det16"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="apropiación del conocimiento las herramientas de ia deben ser empleadas como un catalizador para la comprensión profunda, no como un mecanismo para eludir el estudio y la reflexión. puede usarla para entender más rápido. no para no entender." data-dd="deberes">
+<h3>Apropiación del conocimiento</h3>
+<div class="det" id="det18"><div class="cita"><p class="ctxt">Las herramientas de IA deben ser empleadas como un catalizador para la comprensión profunda, no como un mecanismo para eludir el estudio y la reflexión.</p><figure class="shot"><img loading="lazy" src="citas/cita-18-p25.jpg" alt="Recorte del Acuerdo, página 25"><figcaption>Acuerdo 1904 de 2025 · p. 25</figcaption></figure></div><div class="sig">Puede usarla para entender más rápido. No para no entender.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det18"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="pensamiento crítico y verificación el estudiante debe operar bajo la premisa de que los sistemas de ia no son infalibles y pueden generar información incorrecta, sesgada, desactualizada o ficticia («alucinaciones»). es su responsabilidad indelegable ejercer un escepticismo saludable y validar rigurosamente cualquier dato, afirmación o fuente proporcionada por una ia. este deber se materializa contrastando la información con fuentes académicas primarias y secundarias fiables, como artículos de revistas indexadas, libros y bases de datos científicas suscritas por la universidad. la confianza ciega en la información generada por una máquina, sin un proceso de verificación diligente, denota una falta de rigor académico. «responsabilidad indelegable». el caso 3 de hoy, en lenguaje de reglamento." data-dd="deberes">
+<h3>Pensamiento crítico y verificación</h3>
+<div class="det" id="det19"><div class="cita"><p class="ctxt">El estudiante debe operar bajo la premisa de que los sistemas de IA no son infalibles y pueden generar información incorrecta, sesgada, desactualizada o ficticia («alucinaciones»). Es su responsabilidad indelegable ejercer un escepticismo saludable y validar rigurosamente cualquier dato, afirmación o fuente proporcionada por una IA.</p><figure class="shot"><img loading="lazy" src="citas/cita-19-p25.jpg" alt="Recorte del Acuerdo, página 25"><figcaption>Acuerdo 1904 de 2025 · p. 25</figcaption></figure></div><div class="cita"><p class="ctxt">Este deber se materializa contrastando la información con fuentes académicas primarias y secundarias fiables, como artículos de revistas indexadas, libros y bases de datos científicas suscritas por la universidad. La confianza ciega en la información generada por una máquina, sin un proceso de verificación diligente, denota una falta de rigor académico.</p><figure class="shot"><img loading="lazy" src="citas/cita-20-p25.jpg" alt="Recorte del Acuerdo, página 25"><figcaption>Acuerdo 1904 de 2025 · p. 25</figcaption></figure></div><div class="sig">«Responsabilidad indelegable». El caso 3 de hoy, en lenguaje de reglamento.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det19"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="declaración y atribución explícita el estudiante está obligado a declarar de manera explícita y detallada el uso de cualquier herramienta de ia en la elaboración de sus trabajos. […] dicha atribución debe detallar qué herramienta se utilizó, en qué fases del trabajo y con qué propósito específico. los tres campos de la plantilla de declaración de este curso salen literalmente de aquí." data-dd="deberes">
+<h3>Declaración y atribución explícita</h3>
+<div class="det" id="det21"><div class="cita"><p class="ctxt">el estudiante está obligado a declarar de manera explícita y detallada el uso de cualquier herramienta de IA en la elaboración de sus trabajos. […] Dicha atribución debe detallar qué herramienta se utilizó, en qué fases del trabajo y con qué propósito específico.</p><figure class="shot"><img loading="lazy" src="citas/cita-21-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div><div class="sig">Los tres campos de la plantilla de declaración de este curso salen literalmente de aquí.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det21"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="protección de datos personales y sensibles esto implica la prohibición de introducir información personal sensible, como números de identificación, datos de salud, información financiera, situaciones personales confidenciales o datos de proyectos de investigación no publicados, en plataformas de ia, especialmente en aquellas de carácter público o cuyos términos de servicio no garanticen la confidencialidad absoluta. el manejo de la ia debe ser anónimo y despersonalizado para evitar que la información privada sea utilizada para entrenar modelos o sea expuesta a brechas de seguridad. casos 1, 2 y 5 de hoy. la lista incluye «datos de salud» de forma expresa." data-dd="deberes">
+<h3>Protección de datos personales y sensibles</h3>
+<div class="det" id="det22"><div class="cita"><p class="ctxt">Esto implica la prohibición de introducir información personal sensible, como números de identificación, datos de salud, información financiera, situaciones personales confidenciales o datos de proyectos de investigación no publicados, en plataformas de IA, especialmente en aquellas de carácter público o cuyos términos de servicio no garanticen la confidencialidad absoluta.</p><figure class="shot"><img loading="lazy" src="citas/cita-22-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div><div class="cita"><p class="ctxt">El manejo de la IA debe ser anónimo y despersonalizado para evitar que la información privada sea utilizada para entrenar modelos o sea expuesta a brechas de seguridad.</p><figure class="shot"><img loading="lazy" src="citas/cita-23-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div><div class="sig">Casos 1, 2 y 5 de hoy. La lista incluye «datos de salud» de forma expresa.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det22"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="diálogo y consulta académica el principal referente para la orientación académica es y seguirá siendo el docente. ante cualquier duda sobre los límites del uso de la ia en una asignatura o tarea, la responsabilidad del estudiante es buscar proactivamente la aclaración y la orientación de su docente. si tiene dudas de si puede usarla en una materia, pregúntele al profesor. preguntar lo protege." data-dd="deberes">
+<h3>Diálogo y consulta académica</h3>
+<div class="det" id="det24"><div class="cita"><p class="ctxt">El principal referente para la orientación académica es y seguirá siendo el docente. Ante cualquier duda sobre los límites del uso de la IA en una asignatura o tarea, la responsabilidad del estudiante es buscar proactivamente la aclaración y la orientación de su docente.</p><figure class="shot"><img loading="lazy" src="citas/cita-24-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div><div class="sig">Si tiene dudas de si puede usarla en una materia, pregúntele al profesor. Preguntar lo protege.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det24"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="respeto a la propiedad intelectual está prohibido utilizar la ia de manera que infrinja deliberadamente la propiedad intelectual de terceros. esto incluye la reproducción no autorizada de textos, imágenes, música o cualquier otra obra protegida. el caso 4, el del render. aplica a imagen, música y texto." data-dd="deberes">
+<h3>Respeto a la propiedad intelectual</h3>
+<div class="det" id="det25"><div class="cita"><p class="ctxt">está prohibido utilizar la IA de manera que infrinja deliberadamente la propiedad intelectual de terceros. Esto incluye la reproducción no autorizada de textos, imágenes, música o cualquier otra obra protegida.</p><figure class="shot"><img loading="lazy" src="citas/cita-25-p26.jpg" alt="Recorte del Acuerdo, página 26"><figcaption>Acuerdo 1904 de 2025 · p. 26</figcaption></figure></div><div class="sig">El caso 4, el del render. Aplica a imagen, música y texto.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det25"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="ciudadanía digital y convivencia queda terminantemente prohibido el uso de ia para crear o difundir desinformación, generar contenido difamatorio, suplantar la identidad de compañeros o docentes (deepfakes), o llevar a cabo cualquier forma de acoso, intimidación o discurso de odio. los deepfakes de compañeros o profesores están nombrados explícitamente." data-dd="deberes">
+<h3>Ciudadanía digital y convivencia</h3>
+<div class="det" id="det26"><div class="cita"><p class="ctxt">Queda terminantemente prohibido el uso de IA para crear o difundir desinformación, generar contenido difamatorio, suplantar la identidad de compañeros o docentes (deepfakes), o llevar a cabo cualquier forma de acoso, intimidación o discurso de odio.</p><figure class="shot"><img loading="lazy" src="citas/cita-26-p27.jpg" alt="Recorte del Acuerdo, página 27"><figcaption>Acuerdo 1904 de 2025 · p. 27</figcaption></figure></div><div class="sig">Los deepfakes de compañeros o profesores están nombrados explícitamente.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det26"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="bienestar y desarrollo cognitivo sostenible esto implica un uso consciente y moderado de estas herramientas para evitar una dependencia excesiva que pueda atrofiar habilidades fundamentales como la memoria, el pensamiento crítico autónomo, la resolución de problemas sin asistencia tecnológica y la creatividad original. el deber se materializa en la autogestión del tiempo de uso, en la priorización del esfuerzo mental propio antes de recurrir a la asistencia de la ia, y en la reflexión crítica sobre cómo el uso de estas herramientas está impactando sus propios procesos de pensamiento y aprendizaje a largo plazo. este es el más raro de todos: un reglamento preocupado por que usted no se atrofie. es idiocracy escrito en lenguaje normativo." data-dd="deberes">
+<h3>Bienestar y desarrollo cognitivo sostenible</h3>
+<div class="det" id="det27"><div class="cita"><p class="ctxt">Esto implica un uso consciente y moderado de estas herramientas para evitar una dependencia excesiva que pueda atrofiar habilidades fundamentales como la memoria, el pensamiento crítico autónomo, la resolución de problemas sin asistencia tecnológica y la creatividad original.</p><figure class="shot"><img loading="lazy" src="citas/cita-27-p27.jpg" alt="Recorte del Acuerdo, página 27"><figcaption>Acuerdo 1904 de 2025 · p. 27</figcaption></figure></div><div class="cita"><p class="ctxt">El deber se materializa en la autogestión del tiempo de uso, en la priorización del esfuerzo mental propio antes de recurrir a la asistencia de la IA, y en la reflexión crítica sobre cómo el uso de estas herramientas está impactando sus propios procesos de pensamiento y aprendizaje a largo plazo.</p><figure class="shot"><img loading="lazy" src="citas/cita-28-p27.jpg" alt="Recorte del Acuerdo, página 27"><figcaption>Acuerdo 1904 de 2025 · p. 27</figcaption></figure></div><div class="sig">Este es el más raro de todos: un reglamento preocupado por que usted no se atrofie. Es Idiocracy escrito en lenguaje normativo.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det27"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Sus nueve derechos</h3>
+<div class="grid"><article class="card" style="--c:var(--verde)" data-txt="al uso formativo y responsable a utilizar herramientas de ia como apoyo a su aprendizaje cuando estén permitidas, siempre que se respeten la integridad académica y los lineamientos institucionales. usarla no es un privilegio que le conceden. es un derecho suyo." data-dd="derechos">
+<h3>Al uso formativo y responsable</h3>
+<div class="det" id="det29"><div class="cita"><p class="ctxt">A utilizar herramientas de IA como apoyo a su aprendizaje cuando estén permitidas, siempre que se respeten la integridad académica y los lineamientos institucionales.</p><figure class="shot"><img loading="lazy" src="citas/cita-29-p27.jpg" alt="Recorte del Acuerdo, página 27"><figcaption>Acuerdo 1904 de 2025 · p. 27</figcaption></figure></div><div class="sig">Usarla no es un privilegio que le conceden. Es un derecho suyo.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det29"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a que le digan qué se permite a recibir de cada docente indicaciones explícitas sobre qué usos de ia están permitidos, restringidos o prohibidos en una actividad académica. si un profesor no dice nada y después lo sanciona, ese profesor incumplió el reglamento." data-dd="derechos">
+<h3>A que le digan qué se permite</h3>
+<div class="det" id="det30"><div class="cita"><p class="ctxt">A recibir de cada docente indicaciones explícitas sobre qué usos de IA están permitidos, restringidos o prohibidos en una actividad académica.</p><figure class="shot"><img loading="lazy" src="citas/cita-30-p27.jpg" alt="Recorte del Acuerdo, página 27"><figcaption>Acuerdo 1904 de 2025 · p. 27</figcaption></figure></div><div class="sig">Si un profesor no dice nada y después lo sanciona, ese profesor incumplió el reglamento.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det30"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a saber si lo están evaluando con ia a ser informados cuando se empleen sistemas de ia para apoyar la calificación, el proctoring o cualquier forma de monitoreo académico, incluyendo su finalidad y el tipo de datos procesados. tienen derecho a saber si un algoritmo los está calificando o vigilando." data-dd="derechos">
+<h3>A saber si lo están evaluando con IA</h3>
+<div class="det" id="det31"><div class="cita"><p class="ctxt">A ser informados cuando se empleen sistemas de IA para apoyar la calificación, el proctoring o cualquier forma de monitoreo académico, incluyendo su finalidad y el tipo de datos procesados.</p><figure class="shot"><img loading="lazy" src="citas/cita-31-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">Tienen derecho a saber si un algoritmo los está calificando o vigilando.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det31"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a que sus datos no entren a cualquier sistema a que sus datos personales, académicos y de evaluación no sean introducidos en sistemas de ia que no cumplan la normativa de protección de datos o las políticas institucionales. la misma regla que les aplica a ustedes, le aplica a la institución con los datos de ustedes." data-dd="derechos">
+<h3>A que sus datos no entren a cualquier sistema</h3>
+<div class="det" id="det32"><div class="cita"><p class="ctxt">A que sus datos personales, académicos y de evaluación no sean introducidos en sistemas de IA que no cumplan la normativa de protección de datos o las políticas institucionales.</p><figure class="shot"><img loading="lazy" src="citas/cita-32-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">La misma regla que les aplica a ustedes, le aplica a la institución con los datos de ustedes.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det32"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a que un humano revise a solicitar revisión por parte de una persona responsable cuando una decisión académica afecte de manera significativa su trayectoria y haya sido tomada o sugerida por un sistema de ia. si un algoritmo influyó en algo que afecta su carrera, puede exigir que lo mire una persona." data-dd="derechos">
+<h3>A que un humano revise</h3>
+<div class="det" id="det33"><div class="cita"><p class="ctxt">A solicitar revisión por parte de una persona responsable cuando una decisión académica afecte de manera significativa su trayectoria y haya sido tomada o sugerida por un sistema de IA.</p><figure class="shot"><img loading="lazy" src="citas/cita-33-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">Si un algoritmo influyó en algo que afecta su carrera, puede exigir que lo mire una persona.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det33"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a igualdad de acceso a contar, en la medida de las posibilidades institucionales, con acceso equitativo a las herramientas de ia aprobadas o con alternativas académicamente equivalentes cuando existan barreras tecnológicas o de conectividad. nadie puede exigirles una herramienta de pago sin darles una alternativa." data-dd="derechos">
+<h3>A igualdad de acceso</h3>
+<div class="det" id="det34"><div class="cita"><p class="ctxt">A contar, en la medida de las posibilidades institucionales, con acceso equitativo a las herramientas de IA aprobadas o con alternativas académicamente equivalentes cuando existan barreras tecnológicas o de conectividad.</p><figure class="shot"><img loading="lazy" src="citas/cita-34-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">Nadie puede exigirles una herramienta de pago sin darles una alternativa.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det34"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a que los formen a recibir orientación y espacios de formación que fortalezcan su capacidad para utilizar la ia con pensamiento crítico, responsabilidad y respeto por la integridad académica. esta electiva es la universidad cumpliendo este artículo." data-dd="derechos">
+<h3>A que los formen</h3>
+<div class="det" id="det35"><div class="cita"><p class="ctxt">A recibir orientación y espacios de formación que fortalezcan su capacidad para utilizar la IA con pensamiento crítico, responsabilidad y respeto por la integridad académica.</p><figure class="shot"><img loading="lazy" src="citas/cita-35-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">Esta electiva es la Universidad cumpliendo este artículo.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det35"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="al reconocimiento de su autoría a que, aun cuando empleen herramientas de ia como apoyo, se reconozca su aporte intelectual original en los trabajos académicos, y a que no se les exija ceder de manera injustificada sus derechos de autor. declarar que usó ia no le quita la autoría de lo que sí es suyo." data-dd="derechos">
+<h3>Al reconocimiento de su autoría</h3>
+<div class="det" id="det36"><div class="cita"><p class="ctxt">A que, aun cuando empleen herramientas de IA como apoyo, se reconozca su aporte intelectual original en los trabajos académicos, y a que no se les exija ceder de manera injustificada sus derechos de autor.</p><figure class="shot"><img loading="lazy" src="citas/cita-36-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">Declarar que usó IA no le quita la autoría de lo que sí es suyo.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det36"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a un entorno digital seguro a que la ia no sea utilizada por otros miembros de la comunidad para acosarlos, suplantar su identidad o vulnerar su honra, y a contar con canales para denunciar dichas conductas. si alguien hace un deepfake de usted, hay a quién denunciarlo." data-dd="derechos">
+<h3>A un entorno digital seguro</h3>
+<div class="det" id="det37"><div class="cita"><p class="ctxt">A que la IA no sea utilizada por otros miembros de la comunidad para acosarlos, suplantar su identidad o vulnerar su honra, y a contar con canales para denunciar dichas conductas.</p><figure class="shot"><img loading="lazy" src="citas/cita-37-p28.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · p. 28</figcaption></figure></div><div class="sig">Si alguien hace un deepfake de usted, hay a quién denunciarlo.</div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="det37"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Cuánta IA puede usar — Acuerdo 1944, artículo 7</h3>
+<p class="lead">Son umbrales máximos institucionales. El docente o el director pueden fijar límites
+más estrictos, comunicándolo por escrito al inicio del proceso.</p>
+<div class="tabla-scroll"><table class="porc">
+<thead><tr><th>Tipo de trabajo</th><th>Máx. IA</th><th>Alerta</th><th>Prohibido</th><th>Observación</th></tr></thead>
+<tbody><tr><td>Tarea de asignatura, ensayo o trabajo de curso</td><td class='num'>Hasta 30 %</td><td class='num alerta'>21 – 30 %</td><td class='num prohib'>Mayor de 30 %</td><td class='obs'>Declaración obligatoria; el docente puede fijar límites más estrictos en el syllabus.</td></tr><tr><td>Informe de práctica formativa o de campo</td><td class='num'>Hasta 20 %</td><td class='num alerta'>11 – 20 %</td><td class='num prohib'>Mayor de 20 %</td><td class='obs'>La reflexión y el análisis del practicante deben predominar.</td></tr><tr><td>Trabajo final de asignatura / proyecto integrador de semestre</td><td class='num'>Hasta 20 %</td><td class='num alerta'>11 – 20 %</td><td class='num prohib'>Mayor de 20 %</td><td class='obs'>El docente puede ampliar hasta 30 % con justificación pedagógica documentada.</td></tr><tr><td>Trabajo de Grado de Pregrado</td><td class='num'>Hasta 20 %</td><td class='num alerta'>11 – 20 %</td><td class='num prohib'>Mayor de 20 %</td><td class='obs'>Director del trabajo verifica coherencia entre el FOR-IA-001 y el texto.</td></tr><tr><td>Trabajo de Especialización</td><td class='num'>Hasta 20 %</td><td class='num alerta'>11 – 20 %</td><td class='num prohib'>Mayor de 20 %</td><td class='obs'>Director y comité de programa verifican la coherencia metodológica.</td></tr><tr><td>Tesis de Maestría</td><td class='num'>Hasta 15 %</td><td class='num alerta'>10 – 15 %</td><td class='num prohib'>Mayor de 15 %</td><td class='obs'>Exige justificación metodológica explícita de cada uso de IA.</td></tr><tr><td>Tesis de Doctorado</td><td class='num'>Hasta 10 %</td><td class='num alerta'>6 – 10 %</td><td class='num prohib'>Mayor de 10 %</td><td class='obs'>Los aportes originales deben ser inequívocamente del autor.</td></tr><tr><td>Artículo científico o ponencia</td><td class='num'>Hasta 15 %</td><td class='num alerta'>10 – 15 %</td><td class='num prohib'>Mayor de 15 %</td><td class='obs'>Declaración en sección metodológica del artículo.</td></tr><tr><td>Proyecto de investigación (CIPADE / Vicerrectoría)</td><td class='num'>Hasta 20 %</td><td class='num alerta'>11 – 20 %</td><td class='num prohib'>Mayor de 20 %</td><td class='obs'>Aplica a cada producto derivado individualmente.</td></tr><tr><td>Producto de consultoría o extensión universitaria</td><td class='num'>Hasta 25 %</td><td class='num alerta'>16 – 25 %</td><td class='num prohib'>Mayor de 25 %</td><td class='obs'>El responsable institucional valida y firma la declaración.</td></tr></tbody></table></div>
+<div class="aviso">Estos porcentajes <strong>no aplican</strong> a trabajos cuyo objeto de estudio sea la
+Inteligencia Artificial. El uso exclusivo para corrección gramatical, estilo o traducción de un borrador
+propio tampoco computa, pero <strong>sí debe declararse</strong> en la sección 4 del FOR-IA-001.</div>
+
+<h3 class="blk">Cuándo entrega el FOR-IA-001</h3>
+<div class='mom'><h4>Pregrado y especialización</h4><ol><li>Inscripción del anteproyecto o propuesta de trabajo de grado. Sin el formato, no se puede radicar el trabajo.</li><li>Entrega final del documento escrito. El director firma la sección 7.</li></ol></div><div class='mom'><h4>Maestría</h4><ol><li>Aprobación del anteproyecto por el Comité de Investigaciones.</li><li>Presentación del informe de avance (primer corte).</li><li>Entrega final de la tesis.</li></ol></div><div class='mom'><h4>Doctorado</h4><ol><li>Aprobación del proyecto por el Comité Doctoral, con el plan de gobernanza de IA.</li><li>Informe de avance anual.</li><li>Pre-defensa, si aplica en el programa.</li><li>Entrega final de la tesis doctoral.</li></ol></div>
+<div class="aviso">Antes de inscribir el anteproyecto debe asistir y aprobar el taller institucional
+<em>“IA en tu trabajo de grado y en tu investigación”</em>, de dos horas. La coordinación del programa
+certifica el cumplimiento. Sin el formato, la Secretaría General suspende el trámite de grado.</div>
+</div></section><section class="pane" id="pane-docente" role="tabpanel" aria-labelledby="tab-docente"><div class="wrap">
+<h2>Si usted es <span class="n">docente</span></h2>
+<p class="lead">Sus deberes y derechos como guía del proceso formativo, más lo que el Acuerdo 1944 le permite decidir sobre los límites de uso en sus asignaturas.</p>
+<h3 class="blk">Sus deberes — artículo 19</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="de diseño pedagógico y evaluativo innovador con ia el docente tiene la responsabilidad de evolucionar sus estrategias de enseñanza y evaluación para responder al nuevo contexto tecnológico y especialmente de la ia. esto implica diseñar experiencias de aprendizaje y métodos de evaluación que enfaticen el desarrollo de competencias de orden superior, como el pensamiento crítico, la resolución de problemas complejos, la creatividad y la argumentación oral. la forma de…">
+<span class="pill lit">Art. 19 · a</span>
+<h3>De Diseño Pedagógico y Evaluativo Innovador con IA</h3>
+<div class="det" id="r19a0"><div class="cita"><p class="ctxt">El docente tiene la responsabilidad de evolucionar sus estrategias de enseñanza y evaluación para responder al nuevo contexto tecnológico y especialmente de la IA. Esto implica diseñar experiencias de aprendizaje y métodos de evaluación que enfaticen el desarrollo de competencias de orden superior, como el pensamiento crítico, la resolución de problemas complejos, la creatividad y la argumentación oral. La forma de…</p><figure class="shot"><img loading="lazy" src="citas/art19-a.jpg" alt="Recorte del Acuerdo, página 28"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal a · p. 28</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19a0"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de mentoría y orientación pedagógica explícita es responsabilidad del docente actuar como tutor, estableciendo un marco de uso de la ia claro y explícito para sus estudiantes. este deber se ejerce comunicando de manera inequívoca en el syllabus y en las instrucciones de cada tarea qué herramientas de ia están permitidas, para qué fines y cómo debe ser reportado su uso. la orientación debe verificar y controlar el uso de la ia en los trabajos presentados e…">
+<span class="pill lit">Art. 19 · b</span>
+<h3>De Mentoría y Orientación Pedagógica Explícita</h3>
+<div class="det" id="r19b1"><div class="cita"><p class="ctxt">Es responsabilidad del docente actuar como tutor, estableciendo un marco de uso de la IA claro y explícito para sus estudiantes. Este deber se ejerce comunicando de manera inequívoca en el Syllabus y en las instrucciones de cada tarea qué herramientas de IA están permitidas, para qué fines y cómo debe ser reportado su uso. La orientación debe verificar y controlar el uso de la IA en los trabajos presentados e…</p><figure class="shot"><img loading="lazy" src="citas/art19-b.jpg" alt="Recorte del Acuerdo, página 29"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal b · p. 29</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19b1"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de fomentar la creatividad y el pensamiento crítico el docente debe promover activamente que los estudiantes utilicen la ia como una herramienta de ayuda y como una forma de incentivar la innovación con el compromiso de verificar el conocimiento adquirido por parte del estudiante. esto se logra diseñando desafíos académicos donde la ia actúe como un socio de ideación, una herramienta de prototipado rápido o un generador de escenarios hipotéticos que estimulen la…">
+<span class="pill lit">Art. 19 · c</span>
+<h3>De Fomentar la Creatividad y el Pensamiento Crítico</h3>
+<div class="det" id="r19c2"><div class="cita"><p class="ctxt">El docente debe promover activamente que los estudiantes utilicen la IA como una herramienta de ayuda y como una forma de incentivar la innovación con el compromiso de verificar el conocimiento adquirido por parte del estudiante. Esto se logra diseñando desafíos académicos donde la IA actúe como un socio de ideación, una herramienta de prototipado rápido o un generador de escenarios hipotéticos que estimulen la…</p><figure class="shot"><img loading="lazy" src="citas/art19-c.jpg" alt="Recorte del Acuerdo, página 29"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal c · p. 29</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19c2"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de actualización y desarrollo profesional continuo el docente tiene el deber de mantenerse activamente informado sobre la rápida evolución de las tecnologías de ia y sus implicaciones pedagógicas y disciplinares. esta responsabilidad se materializa mediante la participación en programas de formación, la exploración autónoma de nuevas herramientas, la colaboración en comunidades de práctica docente y la adaptación continua de sus métodos de enseñanza para asegurar su…">
+<span class="pill lit">Art. 19 · d</span>
+<h3>De Actualización y Desarrollo Profesional Continuo</h3>
+<div class="det" id="r19d3"><div class="cita"><p class="ctxt">El docente tiene el deber de mantenerse activamente informado sobre la rápida evolución de las tecnologías de IA y sus implicaciones pedagógicas y disciplinares. Esta responsabilidad se materializa mediante la participación en programas de formación, la exploración autónoma de nuevas herramientas, la colaboración en comunidades de práctica docente y la adaptación continua de sus métodos de enseñanza para asegurar su…</p><figure class="shot"><img loading="lazy" src="citas/art19-d.jpg" alt="Recorte del Acuerdo, página 29"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal d · p. 29</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19d3"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de transparencia y protección de datos estudiantiles el docente debe ser completamente transparente si utiliza sistemas de ia en su labor docente, acuerdo 1804 consejo directivo del 28 de noviembre de 2025 30 por ejemplo, para la evaluación de trabajos o la personalización de la retroalimentación. asimismo, tiene la responsabilidad ineludible de proteger la privacidad de sus estudiantes, lo que prohíbe cargar información personal o académica identificable en…">
+<span class="pill lit">Art. 19 · e</span>
+<h3>De Transparencia y Protección de Datos Estudiantiles</h3>
+<div class="det" id="r19e4"><div class="cita"><p class="ctxt">El docente debe ser completamente transparente si utiliza sistemas de IA en su labor docente, Acuerdo 1804 Consejo Directivo del 28 de noviembre de 2025 30 por ejemplo, para la evaluación de trabajos o la personalización de la retroalimentación. Asimismo, tiene la responsabilidad ineludible de proteger la privacidad de sus estudiantes, lo que prohíbe cargar información personal O académica identificable en…</p><figure class="shot"><img loading="lazy" src="citas/art19-e.jpg" alt="Recorte del Acuerdo, página 30"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal e · p. 30</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19e4"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de liderazgo en la evolución curricular de su disciplina esta responsabilidad trasciende la adaptación de cursos individuales y posiciona al docente como un agente clave en la transformación de su campo de estudio. el docente tiene el deber de analizar prospectivamente cómo la ia está redefiniendo las competencias profesionales, los marcos teóricos y las prácticas de su disciplina. a partir de este análisis, debe proponer la actualización de los planes de estudio,…">
+<span class="pill lit">Art. 19 · f</span>
+<h3>De Liderazgo en la Evolución Curricular de su Disciplina</h3>
+<div class="det" id="r19f5"><div class="cita"><p class="ctxt">Esta responsabilidad trasciende la adaptación de cursos individuales y posiciona al docente como un agente clave en la transformación de su campo de estudio. El docente tiene el deber de analizar prospectivamente cómo la IA está redefiniendo las competencias profesionales, los marcos teóricos y las prácticas de su disciplina. A partir de este análisis, debe proponer la actualización de los planes de estudio,…</p><figure class="shot"><img loading="lazy" src="citas/art19-f.jpg" alt="Recorte del Acuerdo, página 30"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal f · p. 30</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19f5"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de garantizar la equidad y la accesibilidad en el uso de la ia el docente debe ser un garante de la equidad en su aula. es su responsabilidad asegurarse de que la integración de la ia en sus prácticas pedagógicas no cree o aumente las brechas entre los estudiantes. esto implica tomar medidas conscientes para no depender exclusivamente de herramientas de ia de pago o que requieran un alto poder computacional. el deber se materializa al priorizar el uso de herramientas de acceso…">
+<span class="pill lit">Art. 19 · g</span>
+<h3>De Garantizar la Equidad y la Accesibilidad en el Uso de la IA</h3>
+<div class="det" id="r19g6"><div class="cita"><p class="ctxt">El docente debe ser un garante de la equidad en su aula. Es su responsabilidad asegurarse de que la integración de la IA en sus prácticas pedagógicas no cree o aumente las brechas entre los estudiantes. Esto implica tomar medidas conscientes para no depender exclusivamente de herramientas de IA de pago o que requieran un alto poder computacional. El deber se materializa al priorizar el uso de herramientas de acceso…</p><figure class="shot"><img loading="lazy" src="citas/art19-g.jpg" alt="Recorte del Acuerdo, página 30"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal g · p. 30</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19g6"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de modelar la vulnerabilidad intelectual y el aprendizaje permanente en un entorno tecnológico que cambia rápidamente, el docente tiene la responsabilidad de modelar para sus estudiantes una de las competencias más importantes del siglo xxi: la capacidad de aprender, desaprender y reaprender. esto implica abandonar la postura del &quot;experto que todo lo sabe&quot; y adoptar la de un &quot;aprendiz avanzado y guía&quot;. el docente debe mostrarse abierto a explorar nuevas herramientas junto a sus…">
+<span class="pill lit">Art. 19 · h</span>
+<h3>De Modelar la Vulnerabilidad Intelectual y el Aprendizaje Permanente</h3>
+<div class="det" id="r19h7"><div class="cita"><p class="ctxt">En un entorno tecnológico que cambia rápidamente, el docente tiene la responsabilidad de modelar para sus estudiantes una de las competencias más importantes del siglo XXI: la capacidad de aprender, desaprender y reaprender. Esto implica abandonar la postura del &quot;experto que todo lo sabe&quot; y adoptar la de un &quot;aprendiz avanzado y guía&quot;. El docente debe mostrarse abierto a explorar nuevas herramientas junto a sus…</p><figure class="shot"><img loading="lazy" src="citas/art19-h.jpg" alt="Recorte del Acuerdo, página 30"><figcaption>Acuerdo 1904 de 2025 · Art. 19, literal h · p. 30</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r19h7"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+<h3 class="blk">Sus derechos — artículo 20</h3>
+<div class="grid"><article class="card" style="--c:var(--verde)" data-txt="a la autonomía pedagógica en la integración de ia a decidir, dentro del marco de los lineamientos institucionales, cómo y en qué medida integrar herramientas de ia en sus cursos, metodologías y estrategias de">
+<span class="pill lit">Art. 20 · a</span>
+<h3>A la autonomía pedagógica en la integración de IA</h3>
+<div class="det" id="r20a100"><div class="cita"><p class="ctxt">A decidir, dentro del marco de los lineamientos institucionales, cómo y en qué medida integrar herramientas de IA en sus cursos, metodologías y estrategias de</p><figure class="shot"><img loading="lazy" src="citas/art20-a.jpg" alt="Recorte del Acuerdo, página 31"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal a · p. 31</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20a100"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a la formación y acompañamiento institucional a acceder a programas de capacitación, actualización y apoyo técnico que les permitan usar la ia de manera pedagógicamente pertinente, ética y">
+<span class="pill lit">Art. 20 · b</span>
+<h3>A la formación y acompañamiento institucional</h3>
+<div class="det" id="r20b101"><div class="cita"><p class="ctxt">A acceder a programas de capacitación, actualización y apoyo técnico que les permitan usar la IA de manera pedagógicamente pertinente, ética y</p><figure class="shot"><img loading="lazy" src="citas/art20-b.jpg" alt="Recorte del Acuerdo, página 31"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal b · p. 31</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20b101"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a disponer de herramientas institucionales autorizadas a contar, en la medida de las capacidades de la universidad, con acceso a plataformas de ia licenciadas o aprobadas institucionalmente para apoyar la docencia y la">
+<span class="pill lit">Art. 20 · c</span>
+<h3>A disponer de herramientas institucionales autorizadas</h3>
+<div class="det" id="r20c102"><div class="cita"><p class="ctxt">A contar, en la medida de las capacidades de la Universidad, con acceso a plataformas de IA licenciadas o aprobadas institucionalmente para apoyar la docencia y la</p><figure class="shot"><img loading="lazy" src="citas/art20-c.jpg" alt="Recorte del Acuerdo, página 31"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal c · p. 31</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20c102"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="ala protección de su autonomía y juicio profesional a que ningún sistema de ia sustituya su criterio académico en decisiones de evaluación, aprobación o reprobación de estudiantes, ni en la definición de contenidos">
+<span class="pill lit">Art. 20 · d</span>
+<h3>A la protección de su autonomía y juicio profesional</h3>
+<div class="det" id="r20d103"><div class="cita"><p class="ctxt">A que ningún sistema de IA sustituya su criterio académico en decisiones de evaluación, aprobación o reprobación de estudiantes, ni en la definición de contenidos</p><figure class="shot"><img loading="lazy" src="citas/art20-d.jpg" alt="Recorte del Acuerdo, página 31"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal d · p. 31</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20d103"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="ala protección de sus datos y producción intelectual a que sus materiales docentes, investigaciones y datos personales no se carguen en sistemas de ia sin su conocimiento y sin las garantías de protección de datos y propiedad intelectual exigidas por la normativa">
+<span class="pill lit">Art. 20 · e</span>
+<h3>A la protección de sus datos y producción intelectual</h3>
+<div class="det" id="r20e104"><div class="cita"><p class="ctxt">A que sus materiales docentes, investigaciones y datos personales no se carguen en sistemas de IA sin su conocimiento y sin las garantías de protección de datos y propiedad intelectual exigidas por la normativa</p><figure class="shot"><img loading="lazy" src="citas/art20-e.jpg" alt="Recorte del Acuerdo, página 31"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal e · p. 31</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20e104"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="ala transparencia en el uso institucional de ia a ser informados cuando la universidad implemente sistemas de ia que afecten sus funciones docentes o de investigación, así como sobre sus objetivos generales y el tipo de datos">
+<span class="pill lit">Art. 20 · f</span>
+<h3>A la transparencia en el uso institucional de IA</h3>
+<div class="det" id="r20f105"><div class="cita"><p class="ctxt">A ser informados cuando la Universidad implemente sistemas de IA que afecten sus funciones docentes o de investigación, así como sobre sus objetivos generales y el tipo de datos</p><figure class="shot"><img loading="lazy" src="citas/art20-f.jpg" alt="Recorte del Acuerdo, página 31"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal f · p. 31</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20f105"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a participar en la gobernanza de la ia a ser consultados, a través de los órganos colegiados y comités pertinentes, en la elaboración, revisión y actualización de políticas institucionales sobre el uso de ia en la">
+<span class="pill lit">Art. 20 · g</span>
+<h3>A participar en la gobernanza de la IA</h3>
+<div class="det" id="r20g106"><div class="cita"><p class="ctxt">A ser consultados, a través de los órganos colegiados y comités pertinentes, en la elaboración, revisión y actualización de políticas institucionales sobre el uso de IA en la</p><figure class="shot"><img loading="lazy" src="citas/art20-g.jpg" alt="Recorte del Acuerdo, página 32"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal g · p. 32</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20g106"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a condiciones equitativas en la evaluación de su desempeño a que los sistemas de ia que eventualmente apoyen la evaluación de su desempeño docente o investigativo no sean el único criterio de decisión y estén sujetos a supervisión y revisión">
+<span class="pill lit">Art. 20 · h</span>
+<h3>A condiciones equitativas en la evaluación de su desempeño</h3>
+<div class="det" id="r20h107"><div class="cita"><p class="ctxt">A que los sistemas de IA que eventualmente apoyen la evaluación de su desempeño docente o investigativo no sean el único criterio de decisión y estén sujetos a supervisión y revisión</p><figure class="shot"><img loading="lazy" src="citas/art20-h.jpg" alt="Recorte del Acuerdo, página 32"><figcaption>Acuerdo 1904 de 2025 · Art. 20, literal h · p. 32</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r20h107"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Lo que el 1944 le agrega</h3>
+<div class="cols">
+ <div class="caja"><h4>Puede endurecer el límite</h4><p>Los porcentajes del artículo 7 son máximos
+ institucionales. Usted puede fijar límites más estrictos en el syllabus o en el plan de trabajo,
+ comunicándolo por escrito al estudiante antes de iniciar el proceso.</p></div>
+ <div class="caja"><h4>Puede ampliar, con justificación</h4><p>En el trabajo final de asignatura o
+ proyecto integrador puede ampliar hasta 30 % con justificación pedagógica documentada.</p></div>
+ <div class="caja"><h4>Verifica la coherencia</h4><p>El director del trabajo verifica que lo declarado
+ en el FOR-IA-001 coincida con el texto entregado, y firma la sección 7.</p></div>
+</div>
+<div class="aviso">Las herramientas de detección de contenido generado por IA disponibles en el LMS o en
+SIIUB pueden apoyar la medición, pero <strong>no son el único ni el determinante criterio de evaluación</strong>.</div>
+
+</div></section><section class="pane" id="pane-investigador" role="tabpanel" aria-labelledby="tab-investigador"><div class="wrap">
+<h2>Si usted es <span class="n">investigador</span></h2>
+<p class="lead">Rigor, trazabilidad y gobernanza de datos, más los cuatro momentos en que debe presentar el FOR-IA-001 a lo largo del proyecto.</p>
+<h3 class="blk">Sus deberes — artículo 21</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="de rigor científico y validación de resultados el investigador es el garante final de la validez de su trabajo. cualquier resultado, patrón o conclusión generado con la asistencia de una ia debe ser sometido a un riguroso proceso de validación independiente, utilizando métodos estadísticos y/o analíticos convencionales. no se puede delegar el juicio científico en un algoritmo. la ia es un instrumento de información y/o análisis, no una fuente de verdad…">
+<span class="pill lit">Art. 21 · a</span>
+<h3>De Rigor Científico y Validación de Resultados</h3>
+<div class="det" id="r21a0"><div class="cita"><p class="ctxt">El investigador es el garante final de la validez de su trabajo. Cualquier resultado, patrón o conclusión generado con la asistencia de una IA debe ser sometido a un riguroso proceso de validación independiente, utilizando métodos estadísticos y/o analíticos convencionales. No se puede delegar el juicio científico en un algoritmo. La IA es un instrumento de información y/o análisis, no una fuente de verdad…</p><figure class="shot"><img loading="lazy" src="citas/art21-a.jpg" alt="Recorte del Acuerdo, página 32"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal a · p. 32</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21a0"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de transparencia y reproducibilidad en la metodología para asegurar la integridad y la reproducibilidad de la ciencia, el investigador está obligado a documentar y reportar de manera exhaustiva el uso de la ia en la sección metodológica de sus publicaciones. debe especificar el modelo de ia utilizado (incluyendo su versión), los parámetros de configuración, la naturaleza de los datos de entrenamiento y el proceso exacto mediante el cual la herramienta fue empleada.…">
+<span class="pill lit">Art. 21 · b</span>
+<h3>De Transparencia y Reproducibilidad en la Metodología</h3>
+<div class="det" id="r21b1"><div class="cita"><p class="ctxt">Para asegurar la integridad y la reproducibilidad de la ciencia, el investigador está obligado a documentar y reportar de manera exhaustiva el uso de la IA en la sección metodológica de sus publicaciones. Debe especificar el modelo de IA utilizado (incluyendo su versión), los parámetros de configuración, la naturaleza de los datos de entrenamiento y el proceso exacto mediante el cual la herramienta fue empleada.…</p><figure class="shot"><img loading="lazy" src="citas/art21-b.jpg" alt="Recorte del Acuerdo, página 32"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal b · p. 32</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21b1"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de ética en la investigación, manejo de datos y propiedad intelectual toda investigación que emplee ia debe someterse y adherirse a los protocolos del comité de ética y bioética y del comité de propiedad intelectual de la universidad. esto es especialmente crítico cuando se utilizan seres vivos o bases de datos con información personal o institucional. el investigador debe garantizar la obtención de consentimientos informados, la completa anonimización de los datos, la gestión segura…">
+<span class="pill lit">Art. 21 · c</span>
+<h3>De Ética en la Investigación, Manejo de Datos y Propiedad Intelectual</h3>
+<div class="det" id="r21c2"><div class="cita"><p class="ctxt">Toda investigación que emplee IA debe someterse y adherirse a los protocolos del Comité de Ética y Bioética y del comité de propiedad intelectual de la universidad. Esto es especialmente crítico cuando se utilizan seres vivos o bases de datos con información personal o institucional. El investigador debe garantizar la obtención de consentimientos informados, la completa anonimización de los datos, la gestión segura…</p><figure class="shot"><img loading="lazy" src="citas/art21-c.jpg" alt="Recorte del Acuerdo, página 32"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal c · p. 32</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21c2"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="sobre la autoría y la propiedad intelectual la autoría de una obra científica se reserva exclusivamente a las personas que han realizado una contribución intelectual sustancial a la misma. las herramientas de ia, al ser instrumentos, no pueden ser designadas como coautoras. su uso debe ser reconocido de forma apropiada, ya sea en la sección de metodología o en los agradecimientos, pero nunca en la línea de autores. el investigador es responsable de delimitar…">
+<span class="pill lit">Art. 21 · d</span>
+<h3>Sobre la Autoría y la Propiedad Intelectual</h3>
+<div class="det" id="r21d3"><div class="cita"><p class="ctxt">La autoría de una obra científica se reserva exclusivamente a las personas que han realizado una contribución intelectual sustancial a la misma. Las herramientas de IA, al ser instrumentos, no pueden ser designadas como coautoras. Su uso debe ser reconocido de forma apropiada, ya sea en la sección de metodología o en los agradecimientos, pero nunca en la línea de autores. El investigador es responsable de delimitar…</p><figure class="shot"><img loading="lazy" src="citas/art21-d.jpg" alt="Recorte del Acuerdo, página 33"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal d · p. 33</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21d3"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de evaluación y mitigación de sesgos (equidad algorítmica) el investigador tiene la responsabilidad primordial de analizar, identificar y mitigar activamente los sesgos que puedan estar presentes en los datos de entrenamiento, los modelos algorítmicos y los resultados de la investigación. debe reconocer que la ia puede perpetuar y amplificar desigualdades sociales existentes. este deber se ejerce mediante la implementación de técnicas de auditoría de sesgos en las distintas…">
+<span class="pill lit">Art. 21 · e</span>
+<h3>De Evaluación y Mitigación de Sesgos (equidad algorítmica)</h3>
+<div class="det" id="r21e4"><div class="cita"><p class="ctxt">El investigador tiene la responsabilidad primordial de analizar, identificar y mitigar activamente los sesgos que puedan estar presentes en los datos de entrenamiento, los modelos algorítmicos y los resultados de la investigación. Debe reconocer que la IA puede perpetuar y amplificar desigualdades sociales existentes. Este deber se ejerce mediante la implementación de técnicas de auditoría de sesgos en las distintas…</p><figure class="shot"><img loading="lazy" src="citas/art21-e.jpg" alt="Recorte del Acuerdo, página 33"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal e · p. 33</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21e4"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de gobernanza y procedencia de los datos de investigación (data provenance) más allá de la seguridad, el investigador es responsable de la gobernanza integral del ciclo de vida de los datos utilizados en su investigación. esto implica mantener un registro meticuloso de la procedencia de los datos (provenance), asegurando que fueron obtenidos de manera lícita y ética. debe garantizar la calidad, integridad y trazabilidad de los conjuntos de datos, especialmente aquellos utilizados para…">
+<span class="pill lit">Art. 21 · f</span>
+<h3>De Gobernanza y Procedencia de los Datos de Investigación (data provenance)</h3>
+<div class="det" id="r21f5"><div class="cita"><p class="ctxt">Más allá de la seguridad, el investigador es responsable de la gobernanza integral del ciclo de vida de los datos utilizados en su investigación. Esto implica mantener un registro meticuloso de la procedencia de los datos (provenance), asegurando que fueron obtenidos de manera lícita y ética. Debe garantizar la calidad, integridad y trazabilidad de los conjuntos de datos, especialmente aquellos utilizados para…</p><figure class="shot"><img loading="lazy" src="citas/art21-f.jpg" alt="Recorte del Acuerdo, página 33"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal f · p. 33</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21f5"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de divulgación científica y compromiso público la responsabilidad del investigador se extiende más allá de la publicación en revistas especializadas. tiene el deber de contribuir al diálogo público y a la comprensión social de la información generada de la ia. esto se ejerce traduciendo los hallazgos complejos de su investigación a un lenguaje accesible para no expertos, participando en foros de divulgación, y colaborando con medios de comunicación y la sociedad…">
+<span class="pill lit">Art. 21 · g</span>
+<h3>De Divulgación Científica y Compromiso Público</h3>
+<div class="det" id="r21g6"><div class="cita"><p class="ctxt">La responsabilidad del investigador se extiende más allá de la publicación en revistas especializadas. Tiene el deber de contribuir al diálogo público y a la comprensión social de la información generada de la IA. Esto se ejerce traduciendo los hallazgos complejos de su investigación a un lenguaje accesible para no expertos, participando en foros de divulgación, y colaborando con medios de comunicación y la sociedad…</p><figure class="shot"><img loading="lazy" src="citas/art21-g.jpg" alt="Recorte del Acuerdo, página 33"><figcaption>Acuerdo 1904 de 2025 · Art. 21, literal g · p. 33</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r21g6"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+<h3 class="blk">Sus derechos — artículo 22</h3>
+<div class="grid"><article class="card" style="--c:var(--verde)" data-txt="al acceso a infraestructuras y herramientas de ia para investigación disponer, en la medida de las capacidades institucionales, de recursos tecnológicos, licencias y asesoría técnica que faciliten el empleo de ia en sus proyectos de">
+<span class="pill lit">Art. 22 · a</span>
+<h3>Al acceso a infraestructuras y herramientas de IA para investigación</h3>
+<div class="det" id="r22a100"><div class="cita"><p class="ctxt">Disponer, en la medida de las capacidades institucionales, de recursos tecnológicos, licencias y asesoría técnica que faciliten el empleo de IA en sus proyectos de</p><figure class="shot"><img loading="lazy" src="citas/art22-a.jpg" alt="Recorte del Acuerdo, página 34"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal a · p. 34</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22a100"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a apoyo ético y jurídico especializado recibir acompañamiento del comité de ética y bioética y de las dependencias competentes para resolver dudas éticas, legales y de protección de datos asociadas al uso de ia en sus">
+<span class="pill lit">Art. 22 · b</span>
+<h3>A apoyo ético y jurídico especializado</h3>
+<div class="det" id="r22b101"><div class="cita"><p class="ctxt">Recibir acompañamiento del Comité de Ética y Bioética y de las dependencias competentes para resolver dudas éticas, legales y de protección de datos asociadas al uso de IA en sus</p><figure class="shot"><img loading="lazy" src="citas/art22-b.jpg" alt="Recorte del Acuerdo, página 34"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal b · p. 34</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22b101"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a la libertad de elección metodológica definir con autonomía científica cuándo, cómo y en qué medida emplear herramientas de ia dentro de sus diseños de investigación, siempre que se respeten los lineamientos institucionales y la normativa">
+<span class="pill lit">Art. 22 · c</span>
+<h3>A la libertad de elección metodológica</h3>
+<div class="det" id="r22c102"><div class="cita"><p class="ctxt">Definir con autonomía científica cuándo, cómo y en qué medida emplear herramientas de IA dentro de sus diseños de investigación, siempre que se respeten los lineamientos institucionales y la normativa</p><figure class="shot"><img loading="lazy" src="citas/art22-c.jpg" alt="Recorte del Acuerdo, página 34"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal c · p. 34</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22c102"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a la protección y gobernanza adecuada de los datos de investigación que los datos recolectados o generados en sus proyectos, incluidos los utilizados para entrenar modelos de ia, cuenten con medidas de seguridad, confidencialidad y trazabilidad acordes con las mejores prácticas científicas e">
+<span class="pill lit">Art. 22 · d</span>
+<h3>A la protección y gobernanza adecuada de los datos de investigación</h3>
+<div class="det" id="r22d103"><div class="cita"><p class="ctxt">Que los datos recolectados o generados en sus proyectos, incluidos los utilizados para entrenar modelos de IA, cuenten con medidas de seguridad, confidencialidad y trazabilidad acordes con las mejores prácticas científicas e</p><figure class="shot"><img loading="lazy" src="citas/art22-d.jpg" alt="Recorte del Acuerdo, página 34"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal d · p. 34</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22d103"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="al reconocimiento de la autoría humana que la autoría de artículos, libros, software y demás productos académicos recaiga en las personas que realizan aportes intelectuales sustanciales, dejando a la ia como herramienta y no como">
+<span class="pill lit">Art. 22 · e</span>
+<h3>Al reconocimiento de la autoría humana</h3>
+<div class="det" id="r22e104"><div class="cita"><p class="ctxt">Que la autoría de artículos, libros, software y demás productos académicos recaiga en las personas que realizan aportes intelectuales sustanciales, dejando a la IA como herramienta y no como</p><figure class="shot"><img loading="lazy" src="citas/art22-e.jpg" alt="Recorte del Acuerdo, página 34"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal e · p. 34</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22e104"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="ala transparencia en la valoración de la producción científica asistida por ia que el uso declarado de ia en etapas del proceso investigativo no sea motivo de descalificación automática de sus productos, sino que se valore su rigor metodológico y su aporte">
+<span class="pill lit">Art. 22 · f</span>
+<h3>A la transparencia en la valoración de la producción científica asistida por IA</h3>
+<div class="det" id="r22f105"><div class="cita"><p class="ctxt">Que el uso declarado de IA en etapas del proceso investigativo no sea motivo de descalificación automática de sus productos, sino que se valore su rigor metodológico y su aporte</p><figure class="shot"><img loading="lazy" src="citas/art22-f.jpg" alt="Recorte del Acuerdo, página 35"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal f · p. 35</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22f105"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="ala protección de la propiedad intelectual de desarrollos basados en ia que la universidad les brinde orientación y mecanismos para proteger, registrar y gestionar la propiedad intelectual de modelos, algoritmos, aplicaciones y demás desarrollos que involucren">
+<span class="pill lit">Art. 22 · g</span>
+<h3>A la protección de la propiedad intelectual de desarrollos basados en IA</h3>
+<div class="det" id="r22g106"><div class="cita"><p class="ctxt">Que la Universidad les brinde orientación y mecanismos para proteger, registrar y gestionar la propiedad intelectual de modelos, algoritmos, aplicaciones y demás desarrollos que involucren</p><figure class="shot"><img loading="lazy" src="citas/art22-g.jpg" alt="Recorte del Acuerdo, página 35"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal g · p. 35</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22g106"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="a participar en la definición de políticas de ia para la investigación contribuir, a través del cipade y comités pertinentes, en la elaboración y actualización de lineamientos institucionales sobre la investigación con y sobre">
+<span class="pill lit">Art. 22 · h</span>
+<h3>A participar en la definición de políticas de IA para la investigación</h3>
+<div class="det" id="r22h107"><div class="cita"><p class="ctxt">Contribuir, a través del CIPADE y comités pertinentes, en la elaboración y actualización de lineamientos institucionales sobre la investigación con y sobre</p><figure class="shot"><img loading="lazy" src="citas/art22-h.jpg" alt="Recorte del Acuerdo, página 35"><figcaption>Acuerdo 1904 de 2025 · Art. 22, literal h · p. 35</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r22h107"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<h3 class="blk">Cuándo entrega el FOR-IA-001</h3>
+<div class='mom'><h4>Investigador principal o equipo</h4><ol>
+<li>Registro del proyecto en CIPADE o ante la Vicerrectoría, con el plan de gobernanza de IA.</li>
+<li>Informes de avance periódicos, con el capítulo “Gobernanza del uso de IA en el período”.</li>
+<li>Cada producto derivado lleva su propio formato diligenciado.</li>
+<li>Informe final del proyecto.</li></ol></div>
+<h3 class="blk">El párrafo que debe ir en el texto — artículo 16</h3>
+<p class="declara">Durante la elaboración de este [artículo/proyecto/trabajo], los autores utilizaron [nombre de la herramienta, versión] con el propósito de [especificar: mejorar la claridad y fluidez del texto / realizar análisis estadístico / sintetizar literatura / traducir / generar figuras — según corresponda]. El output generado por la herramienta fue revisado, editado y validado críticamente por los autores, quienes asumen plena responsabilidad sobre el contenido final publicado. [Si no se utilizó IA: Los autores declaran que no utilizaron herramientas de IA en la elaboración de este artículo.]</p>
+<h3 class="blk">Qué evalúa el Comité de Ética y Bioética</h3>
+<div class="cols">
+ <div class="caja"><h4>Minimización de datos</h4><p>Que entre la menor cantidad posible de datos
+ personales identificables y existan medidas de anonimización previa.</p></div>
+ <div class="caja"><h4>Consentimiento cualificado</h4><p>Que el consentimiento informado especifique
+ qué herramienta se usará y con qué finalidad.</p></div>
+ <div class="caja"><h4>Riesgo de sesgos</h4><p>Que se hayan identificado y documentado los sesgos
+ posibles y las estrategias de mitigación.</p></div>
+ <div class="caja"><h4>Reproducibilidad</h4><p>Que estén documentados modelo, versión y parámetros,
+ de modo que los hallazgos puedan replicarse.</p></div>
+</div>
+
+</div></section><section class="pane" id="pane-funcionario" role="tabpanel" aria-labelledby="tab-funcionario"><div class="wrap">
+<h2>Si usted es <span class="n">funcionario o directivo</span></h2>
+<p class="lead">Sus deberes de infraestructura y supervisión, y los derechos que lo protegen frente a decisiones automatizadas.</p>
+<h3 class="blk">Sus deberes — artículo 23</h3>
+<div class="grid"><article class="card" style="--c:var(--rojo)" data-txt="de proveer una infraestructura tecnológica segura y adecuada es responsabilidad de la división de tecnología, realizar una debida búsqueda para adquirir, licenciar o recomendar cualquier plataforma de ia. se debe garantizar que las herramientas seleccionadas cumplan con los más altos estándares de seguridad, cifrado de datos y protección de la privacidad, asegurando la conformidad con la ley 1581 de 2012 de colombia y otras normativas aplicables. la infraestructura debe ser…">
+<span class="pill lit">Art. 23 · a</span>
+<h3>De Proveer una Infraestructura Tecnológica Segura y Adecuada</h3>
+<div class="det" id="r23a0"><div class="cita"><p class="ctxt">Es responsabilidad de la División de Tecnología, realizar una debida búsqueda para adquirir, licenciar o recomendar cualquier plataforma de IA. Se debe garantizar que las herramientas seleccionadas cumplan con los más altos estándares de seguridad, cifrado de datos y protección de la privacidad, asegurando la conformidad con la Ley 1581 de 2012 de Colombia y otras normativas aplicables. La infraestructura debe ser…</p><figure class="shot"><img loading="lazy" src="citas/art23-a.jpg" alt="Recorte del Acuerdo, página 35"><figcaption>Acuerdo 1904 de 2025 · Art. 23, literal a · p. 35</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r23a0"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--rojo)" data-txt="de supervisión, auditoría y rendición de cuentas la institución debe establecer mecanismos formales para el monitoreo del uso de las tecnologías de ia, especialmente aquellas que toman decisiones que afectan a las personas. esto incluye la realización de auditorías periódicas para detectar y mitigar sesgos algorítmicos, así como la creación de canales claros para que cualquier miembro de la comunidad pueda reportar fallos, comportamientos anómalos o resultados…">
+<span class="pill lit">Art. 23 · b</span>
+<h3>De Supervisión, Auditoría y Rendición de Cuentas</h3>
+<div class="det" id="r23b1"><div class="cita"><p class="ctxt">La institución debe establecer mecanismos formales para el monitoreo del uso de las tecnologías de IA, especialmente aquellas que toman decisiones que afectan a las personas. Esto incluye la realización de auditorías periódicas para detectar y mitigar sesgos algorítmicos, así como la creación de canales claros para que cualquier miembro de la comunidad pueda reportar fallos, comportamientos anómalos o resultados…</p><figure class="shot"><img loading="lazy" src="citas/art23-b.jpg" alt="Recorte del Acuerdo, página 35"><figcaption>Acuerdo 1904 de 2025 · Art. 23, literal b · p. 35</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r23b1"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+<h3 class="blk">Sus derechos — artículo 24</h3>
+<div class="grid"><article class="card" style="--c:var(--verde)" data-txt="derecho a la información y transparencia sobre la ia institucional conocer las políticas, proyectos y sistemas de ia que se adopten y que puedan impactar sus funciones, procesos o condiciones">
+<span class="pill lit">Art. 24 · a</span>
+<h3>Derecho a la información y transparencia sobre la IA institucional</h3>
+<div class="det" id="r24a100"><div class="cita"><p class="ctxt">Conocer las políticas, proyectos y sistemas de IA que se adopten y que puedan impactar sus funciones, procesos o condiciones</p><figure class="shot"><img loading="lazy" src="citas/art24-a.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal a · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24a100"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a la capacitación para el uso de ia recibir formación y acompañamiento para comprender, utilizar y gestionar las herramientas de ia vinculadas a sus">
+<span class="pill lit">Art. 24 · b</span>
+<h3>Derecho a la capacitación para el uso de IA</h3>
+<div class="det" id="r24b101"><div class="cita"><p class="ctxt">Recibir formación y acompañamiento para comprender, utilizar y gestionar las herramientas de IA vinculadas a sus</p><figure class="shot"><img loading="lazy" src="citas/art24-b.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal b · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24b101"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a la protección de sus datos personales, laborales y estratégicos que su información personal, laboral y, en el caso del personal directivo, la información estratégica institucional, sea tratada con confidencialidad y según la normativa de protección de">
+<span class="pill lit">Art. 24 · c</span>
+<h3>Derecho a la protección de sus datos personales, laborales y estratégicos</h3>
+<div class="det" id="r24c102"><div class="cita"><p class="ctxt">Que su información personal, laboral y, en el caso del personal directivo, la información estratégica institucional, sea tratada con confidencialidad y según la normativa de protección de</p><figure class="shot"><img loading="lazy" src="citas/art24-c.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal c · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24c102"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a la revisión humana de decisiones automatizadas solicitar revisión y explicación humana cuando decisiones relevantes sobre su desempeño, permanencia, promoción u otras condiciones laborales se fundamenten en sistemas de">
+<span class="pill lit">Art. 24 · d</span>
+<h3>Derecho a la revisión humana de decisiones automatizadas</h3>
+<div class="det" id="r24d103"><div class="cita"><p class="ctxt">Solicitar revisión y explicación humana cuando decisiones relevantes sobre su desempeño, permanencia, promoción u otras condiciones laborales se fundamenten en sistemas de</p><figure class="shot"><img loading="lazy" src="citas/art24-d.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal d · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24d103"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho al respeto de su criterio profesional y responsabilidad humana que la ia se utilice como herramienta de apoyo y no como sustituto de su juicio profesional ni de sus responsabilidades legales o">
+<span class="pill lit">Art. 24 · e</span>
+<h3>Derecho al respeto de su criterio profesional y responsabilidad humana</h3>
+<div class="det" id="r24e104"><div class="cita"><p class="ctxt">Que la IA se utilice como herramienta de apoyo y no como sustituto de su juicio profesional ni de sus responsabilidades legales o</p><figure class="shot"><img loading="lazy" src="citas/art24-e.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal e · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24e104"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a participar en la definición y mejora de la ia institucional aportar, desde su rol, observaciones, sugerencias y criterios en la formulación, actualización y mejora de las políticas y sistemas de ia que afecten sus">
+<span class="pill lit">Art. 24 · f</span>
+<h3>Derecho a participar en la definición y mejora de la IA institucional</h3>
+<div class="det" id="r24f105"><div class="cita"><p class="ctxt">Aportar, desde su rol, observaciones, sugerencias y criterios en la formulación, actualización y mejora de las políticas y sistemas de IA que afecten sus</p><figure class="shot"><img loading="lazy" src="citas/art24-f.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal f · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24f105"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a condiciones de trabajo equitativas en entornos mediadas por ia que la introducción de ia no genere cargas laborales desproporcionadas, vigilancia excesiva ni prácticas que vulneren su dignidad y">
+<span class="pill lit">Art. 24 · g</span>
+<h3>Derecho a condiciones de trabajo equitativas en entornos mediadas por IA</h3>
+<div class="det" id="r24g106"><div class="cita"><p class="ctxt">Que la introducción de IA no genere cargas laborales desproporcionadas, vigilancia excesiva ni prácticas que vulneren su dignidad y</p><figure class="shot"><img loading="lazy" src="citas/art24-g.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal g · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24g106"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a la asesoría técnica y jurídica en la adopción y uso de ia contar con el apoyo de dependencias especializadas cuando deban evaluar, aprobar o utilizar sistemas de ia en los procesos administrativos o de">
+<span class="pill lit">Art. 24 · h</span>
+<h3>Derecho a la asesoría técnica y jurídica en la adopción y uso de IA</h3>
+<div class="det" id="r24h107"><div class="cita"><p class="ctxt">Contar con el apoyo de dependencias especializadas cuando deban evaluar, aprobar o utilizar sistemas de IA en los procesos administrativos o de</p><figure class="shot"><img loading="lazy" src="citas/art24-h.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal h · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24h107"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article><article class="card" style="--c:var(--verde)" data-txt="derecho a la gestión responsable de riesgos asociados a la ia que existan mecanismos para identificar, evaluar y mitigar riesgos derivados del uso de ia, y a que puedan reportar fallas o impactos negativos para su análisis y">
+<span class="pill lit">Art. 24 · i</span>
+<h3>Derecho a la gestión responsable de riesgos asociados a la IA</h3>
+<div class="det" id="r24i108"><div class="cita"><p class="ctxt">Que existan mecanismos para identificar, evaluar y mitigar riesgos derivados del uso de IA, y a que puedan reportar fallas o impactos negativos para su análisis y</p><figure class="shot"><img loading="lazy" src="citas/art24-i.jpg" alt="Recorte del Acuerdo, página 36"><figcaption>Acuerdo 1904 de 2025 · Art. 24, literal i · p. 36</figcaption></figure></div></div>
+<button class="mas" type="button" aria-expanded="false" aria-controls="r24i108"><span aria-hidden="true">+</span> ver la cita del reglamento</button>
+</article></div>
+
+<div class="aviso">El Acuerdo 1904 hace parte integral de los contratos de trabajo del personal docente y
+administrativo. El incumplimiento se gestiona conforme al Reglamento Interno de Trabajo.</div>
+
+</div></section><section class="pane" id="pane-formato" role="tabpanel" aria-labelledby="tab-formato"><div class="wrap">
+<h2>El formato <span class="n">FOR-IA-001</span></h2>
+<p class="lead">Es el instrumento oficial con el que se declara el uso o no uso de IA. Su diligenciamiento
+es condición necesaria para la validez institucional del trabajo.</p>
+<h3 class="blk">Las siete secciones</h3>
+<ol class="secc"><li>Identificación del trabajo y del autor o autores.</li><li>Declaración de uso o no uso de Inteligencia Artificial.</li><li>Detalle por herramienta o sistema de IA utilizado.</li><li>Fases del proceso en que intervino la IA (catorce fases).</li><li>Declaración sobre autoría, integridad académica y propiedad intelectual.</li><li>Observaciones adicionales y detalles técnicos.</li><li>Firmas del autor, director o docente evaluador, co-autores y sello institucional.</li></ol>
+<h3 class="blk">Dos versiones derivadas</h3>
+<div class="cols">
+ <div class="caja"><h4>FOR-IA-001-PUB</h4><p>Versión condensada para publicaciones externas en revistas
+ indexadas o eventos científicos.</p></div>
+ <div class="caja"><h4>FOR-IA-001-S</h4><p>Versión pedagógica simplificada para semilleros de
+ investigación y actividades formativas tempranas.</p></div>
+</div>
+<h3 class="blk">El párrafo de declaración — artículo 16</h3>
+<p class="declara">Durante la elaboración de este [artículo/proyecto/trabajo], los autores utilizaron [nombre de la herramienta, versión] con el propósito de [especificar: mejorar la claridad y fluidez del texto / realizar análisis estadístico / sintetizar literatura / traducir / generar figuras — según corresponda]. El output generado por la herramienta fue revisado, editado y validado críticamente por los autores, quienes asumen plena responsabilidad sobre el contenido final publicado. [Si no se utilizó IA: Los autores declaran que no utilizaron herramientas de IA en la elaboración de este artículo.]</p>
+<h3 class="blk">Y ante la duda</h3>
+<div class="cols">
+ <div class="caja"><h4>Actividad de clase</h4><p>El docente de la asignatura, su tutor o el Director de Programa.</p></div>
+ <div class="caja"><h4>Trabajo de grado o investigación</h4><p>Su asesor o director, el Comité de Investigación, CIPADE.</p></div>
+ <div class="caja"><h4>Informe de gestión</h4><p>Su jefe inmediato y, de ser necesario, su jefe superior jerárquico.</p></div>
+ <div class="caja"><h4>Uso del FOR-IA-001</h4><p>El IEF acompaña: <a href="mailto:ief@uniboyaca.edu.co">ief@uniboyaca.edu.co</a> o EC-504.</p></div>
+</div>
+</div></section><section class="pane" id="pane-pdf" role="tabpanel" aria-labelledby="tab-pdf"><div class="wrap">
+<h2>Ver los <span class="n">acuerdos</span></h2>
+<p class="lead">Este sitio es un resumen. Ante cualquier duda de interpretación, el texto que rige es el
+del acuerdo original.</p>
+<div class="pdfs">
+ <div class="pdfcard"><h4>Acuerdo 1904 de 2025</h4>
+  <p>Reglamento Institucional para el Uso de la Inteligencia Artificial. Consejo Directivo,
+  28 de noviembre de 2025. 38 páginas.</p>
+  <a href="https://drive.google.com/file/d/1kVXrWkFhivAzvmd_-mLLn8otA88yO7mD/view" target="_blank" rel="noopener">Abrir el PDF</a></div>
+ <div class="pdfcard"><h4>Acuerdo 1944 de 2026</h4>
+  <p>Adopta el formato FOR-IA-001 y fija los límites porcentuales. Consejo Directivo,
+  19 de marzo de 2026. 14 páginas.</p>
+  <a href="PENDIENTE" target="_blank" rel="noopener">Abrir el PDF</a></div>
+</div>
+<div class="aviso"><strong>Pendiente:</strong> el enlace del Acuerdo 1944 está por confirmar. Los dos
+enlaces recibidos apuntaban al mismo archivo.</div>
+</div></section></main>
+
+<footer><div class="wrap">
+ <p><strong>Instituto de Estudios del Futuro</strong> — Universidad de Boyacá</p>
+ <p>Este sitio es un resumen con fines divulgativos. El texto que rige es el de los acuerdos originales.
+ Dudas: <a href="mailto:ief@uniboyaca.edu.co">ief@uniboyaca.edu.co</a> · EC-504</p>
+</div></footer>
+<script>
+document.documentElement.classList.add('js');
+var prog=document.getElementById('prog'),tk=false;
+addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){
+ var h=document.documentElement,m=h.scrollHeight-h.clientHeight;
+ prog.style.width=(m>0?h.scrollTop/m*100:0)+'%';tk=false;});},{passive:true});
+
+function pinta(c){var b=c.querySelector('button.mas');
+ if(b)b.setAttribute('aria-expanded',c.classList.contains('abierta')?'true':'false');}
+document.addEventListener('click',function(e){
+ var c=e.target.closest('.card'); if(!c)return;
+ if(window.getSelection&&String(window.getSelection()).length>2)return;
+ c.classList.toggle('abierta'); pinta(c);});
+document.addEventListener('keydown',function(e){
+ if(e.key!=='Escape')return; var a=document.querySelector('.card.abierta'); if(!a)return;
+ a.classList.remove('abierta'); pinta(a); var b=a.querySelector('button.mas'); if(b)b.focus();});
+
+function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+var est={tab:'general',f:'todos',q:''};
+
+function aplica(){
+ document.querySelectorAll('nav.tabs button').forEach(function(b){
+  var on=b.dataset.tab===est.tab; b.setAttribute('aria-selected',on?'true':'false');});
+ document.querySelectorAll('section.pane').forEach(function(p){
+  p.classList.toggle('on',p.id==='pane-'+est.tab);});
+ var g=document.getElementById('gUsos');
+ if(g){ g.dataset.f=est.f; var n=0,q=norm(est.q);
+  g.querySelectorAll('.card').forEach(function(c){
+   var ok=(est.f==='todos'||c.dataset.cat===est.f)&&(!q||norm(c.dataset.txt).indexOf(q)>-1);
+   c.style.display=ok?'':'none'; if(ok)n++; else {c.classList.remove('abierta');pinta(c);}});
+  var cu=document.getElementById('cUsos');
+  cu.textContent=(est.q||est.f!=='todos')?(n===0?'Ningún uso coincide.':n+(n===1?' uso':' usos')):'';
+ }
+ guarda();
+}
+var cargando=true;
+function guarda(){ if(cargando)return;
+ var p=new URLSearchParams();
+ if(est.tab!=='general')p.set('r',est.tab);
+ if(est.f!=='todos')p.set('f',est.f);
+ if(est.q)p.set('q',est.q);
+ var s=p.toString();
+ history.replaceState(null,'',(s?'?'+s:location.pathname));}
+function lee(){ var p=new URLSearchParams(location.search);
+ var t=p.get('r'); if(t&&document.getElementById('pane-'+t))est.tab=t;
+ var f=p.get('f'); if(['permitido','condicionado','prohibido','todos'].indexOf(f)>-1)est.f=f;
+ est.q=p.get('q')||'';
+ var i=document.getElementById('qUsos'); if(i)i.value=est.q;
+ document.querySelectorAll('.f').forEach(function(b){
+  var on=b.dataset.f===est.f; b.classList.toggle('on',on);
+  b.setAttribute('aria-pressed',on?'true':'false');});}
+
+document.querySelectorAll('nav.tabs button').forEach(function(b){
+ b.addEventListener('click',function(){est.tab=b.dataset.tab;aplica();scrollTo({top:0,behavior:'smooth'});});});
+document.querySelectorAll('.f').forEach(function(b){
+ b.addEventListener('click',function(){
+  document.querySelectorAll('.f').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false');});
+  b.classList.add('on'); b.setAttribute('aria-pressed','true'); est.f=b.dataset.f; aplica();});});
+var t1; var qi=document.getElementById('qUsos');
+if(qi){qi.addEventListener('input',function(e){clearTimeout(t1);var v=e.target.value;
+ t1=setTimeout(function(){est.q=v;aplica();},140);});
+ qi.addEventListener('keydown',function(e){if(e.key==='Escape'){qi.value='';qi.dispatchEvent(new Event('input'));}});}
+
+lee(); aplica(); cargando=false;
+</script>
+</body></html>
